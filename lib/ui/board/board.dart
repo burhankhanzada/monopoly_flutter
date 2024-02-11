@@ -13,6 +13,7 @@ import 'package:monopoly_flutter/ui/board/boxes/icon_box.dart';
 import 'package:monopoly_flutter/ui/board/boxes/jail_box.dart';
 import 'package:monopoly_flutter/ui/board/boxes/property_box.dart';
 import 'package:monopoly_flutter/ui/board/boxes/railroad_box.dart';
+import 'package:monopoly_flutter/ui/board/peice.dart';
 
 class Board extends StatelessWidget {
   const Board({super.key});
@@ -239,6 +240,8 @@ class Board extends StatelessWidget {
         isHotel: property.isHotel,
         color: propertyGroup.color,
         houseCount: property.houseCount,
+        peiceList:
+            property.playerList.map((e) => Peice(color: e.color)).toList(),
       ).inGridArea(location);
 
       list.add(namedAreaGridPlacement);

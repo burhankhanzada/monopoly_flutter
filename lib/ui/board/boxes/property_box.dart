@@ -1,24 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:monopoly_flutter/ui/board/peice.dart';
 import 'package:spaces2/spaces2.dart';
 
 enum BoxPosition { top, left, right, bottom }
 
 class PropertyBox extends StatelessWidget {
-  const PropertyBox({
+  PropertyBox({
     super.key,
     required this.text,
     required this.price,
     required this.color,
     this.houseCount = 0,
     this.isHotel = false,
+    List<Peice>? peiceList,
     required this.position,
-  });
+  }) : peiceList = peiceList ?? [];
 
   final Color color;
   final String text;
   final int price;
   final int houseCount;
   final bool isHotel;
+  final List<Peice> peiceList;
   final BoxPosition position;
 
   @override
@@ -160,19 +163,57 @@ class PropertyBox extends StatelessWidget {
       ],
     );
 
-    // if (_isHorizontal()) {
-    //   child = RotatedBox(
-    //     quarterTurns: -1,
-    //     child: child,
-    //   );
-    // }
-
     return Expanded(
       flex: 3,
-      child: Padding(
-        padding: const EdgeInsets.all(4),
-        child: child,
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(4),
+            child: child,
+          ),
+          peicesWidget(),
+        ],
       ),
+    );
+  }
+
+  Widget peicesWidget() {
+    Widget child;
+
+    if (_isVertical() || peiceList.length <= 4) {
+      child = Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: peiceList,
+      );
+    } else {
+      final top = peiceList.sublist(0, 3);
+      final bottom = peiceList.sublist(3, 5);
+
+      child = Stack(
+        alignment: Alignment.center,
+        children: [
+          Positioned(
+            bottom: 20,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: top,
+            ),
+          ),
+          Positioned(
+            bottom: 0,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: bottom,
+            ),
+          ),
+        ],
+      );
+    }
+
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: child,
     );
   }
 }
