@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
+import 'package:monopoly_flutter/constant/enum_constant.dart';
 import 'package:monopoly_flutter/constant/property_constant.dart';
 import 'package:monopoly_flutter/models/property_group.dart';
 import 'package:monopoly_flutter/ui/board/boxes/center_box.dart';
@@ -7,12 +8,11 @@ import 'package:monopoly_flutter/ui/board/boxes/chance_box.dart';
 import 'package:monopoly_flutter/ui/board/boxes/chest_box.dart';
 import 'package:monopoly_flutter/ui/board/boxes/free_park_box.dart';
 import 'package:monopoly_flutter/ui/board/boxes/go_box.dart';
-import 'package:monopoly_flutter/ui/board/boxes/goto_jail_box%20copy.dart';
+import 'package:monopoly_flutter/ui/board/boxes/goto_jail_box.dart';
 import 'package:monopoly_flutter/ui/board/boxes/icon_box.dart';
 import 'package:monopoly_flutter/ui/board/boxes/jail_box.dart';
 import 'package:monopoly_flutter/ui/board/boxes/property_box.dart';
 import 'package:monopoly_flutter/ui/board/boxes/railroad_box.dart';
-import 'package:monopoly_flutter/ui/board/boxes/simple_box.dart';
 
 class Board extends StatelessWidget {
   const Board({super.key});
@@ -78,7 +78,7 @@ class Board extends StatelessWidget {
                   ...right(),
                   ...bottom(),
                   ...coreners(),
-                  const CenterBox()
+                  const CenterBox().inGridArea('cen')
                 ],
               ),
             ),

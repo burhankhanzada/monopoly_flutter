@@ -17,8 +17,8 @@ class PropertyBox extends StatelessWidget {
   final Color color;
   final String text;
   final int price;
-  final houseCount;
-  final isHotel;
+  final int houseCount;
+  final bool isHotel;
   final BoxPosition position;
 
   @override

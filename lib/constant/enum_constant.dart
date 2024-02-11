@@ -1,0 +1,1 @@
+enum BoxAligment { vertical, horizontal }
