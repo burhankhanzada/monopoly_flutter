@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:monopoly_flutter/ui/board/peice.dart';
+import 'package:monopoly_flutter/ui/board/peices.dart';
 import 'package:spaces2/spaces2.dart';
 
 enum BoxPosition { top, left, right, bottom }
@@ -172,48 +173,12 @@ class PropertyBox extends StatelessWidget {
             padding: const EdgeInsets.all(4),
             child: child,
           ),
-          peicesWidget(),
+          Peices(
+            peiceList: peiceList,
+            isVertical: _isVertical(),
+          ),
         ],
       ),
-    );
-  }
-
-  Widget peicesWidget() {
-    Widget child;
-
-    if (_isVertical() || peiceList.length <= 4) {
-      child = Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: peiceList,
-      );
-    } else {
-      final top = peiceList.sublist(0, 3);
-      final bottom = peiceList.sublist(3, 5);
-
-      child = Stack(
-        alignment: Alignment.center,
-        children: [
-          Positioned(
-            bottom: 20,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: top,
-            ),
-          ),
-          Positioned(
-            bottom: 0,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: bottom,
-            ),
-          ),
-        ],
-      );
-    }
-
-    return Align(
-      alignment: Alignment.bottomCenter,
-      child: child,
     );
   }
 }

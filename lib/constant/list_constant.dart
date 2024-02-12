@@ -1,5 +1,14 @@
 import 'package:monopoly_flutter/constant/property_constant.dart';
 
+final sixPlayerList = [
+  player1,
+  player2,
+  player3,
+  player4,
+  player5,
+  player6,
+];
+
 final propertyList1 = [property1, property2];
 final propertyList2 = [property3, property4, property5];
 final propertyList3 = [property6, property7, property8];

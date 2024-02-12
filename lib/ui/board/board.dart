@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 import 'package:monopoly_flutter/constant/enum_constant.dart';
 import 'package:monopoly_flutter/constant/property_constant.dart';
+import 'package:monopoly_flutter/models/player.dart';
 import 'package:monopoly_flutter/models/property_group.dart';
 import 'package:monopoly_flutter/ui/board/boxes/center_box.dart';
 import 'package:monopoly_flutter/ui/board/boxes/chance_box.dart';
@@ -16,7 +17,9 @@ import 'package:monopoly_flutter/ui/board/boxes/railroad_box.dart';
 import 'package:monopoly_flutter/ui/board/peice.dart';
 
 class Board extends StatelessWidget {
-  const Board({super.key});
+  const Board({super.key, required this.playerList});
+
+  final List<Player> playerList;
 
   @override
   Widget build(BuildContext context) {
@@ -91,10 +94,18 @@ class Board extends StatelessWidget {
 
   List<Widget> coreners() {
     return [
-      const GoBox().inGridArea('go'),
-      const JailBox().inGridArea('jail'),
-      const FreeParkBox().inGridArea('fp'),
-      const GoToJailBox().inGridArea('gtj'),
+      GoBox(
+        playerList: playerList,
+      ).inGridArea('go'),
+      JailBox(
+        playerList: playerList,
+      ).inGridArea('jail'),
+      FreeParkBox(
+        playerList: playerList,
+      ).inGridArea('fp'),
+      GoToJailBox(
+        playerList: playerList,
+      ).inGridArea('gtj'),
     ];
   }
 

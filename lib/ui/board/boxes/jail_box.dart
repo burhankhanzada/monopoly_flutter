@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:monopoly_flutter/constant/list_constant.dart';
+import 'package:monopoly_flutter/models/player.dart';
+import 'package:monopoly_flutter/ui/board/boxes/peice_box.dart';
+import 'package:monopoly_flutter/ui/board/peice.dart';
 import 'package:spaces2/spaces2.dart';
 
 class JailBox extends StatelessWidget {
-  const JailBox({super.key});
+  const JailBox({super.key, required this.playerList});
 
+  final List<Player> playerList;
   @override
   Widget build(BuildContext context) {
     return DefaultTextStyle(
@@ -26,15 +31,23 @@ class JailBox extends StatelessWidget {
                     ),
                   ),
                   Expanded(
-                    child: Container(
-                      color: Colors.black,
-                      child: SpacedColumn(
-                        children: [
-                          const Text('In Jail', style: TextStyle(
-                            color: Colors.white
-                          ),),
-                          Image.asset('assets/icons/jail.png', height: 80, color: Colors.white,),
-                        ],
+                    child: PieceBox(
+                      playerList: playerList,
+                      child: Container(
+                        color: Colors.black,
+                        child: SpacedColumn(
+                          children: [
+                            const Text(
+                              'In Jail',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            Image.asset(
+                              'assets/icons/jail.png',
+                              height: 80,
+                              color: Colors.white,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
