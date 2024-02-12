@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:monopoly_flutter/ui/board/peice.dart';
 import 'package:monopoly_flutter/ui/dice/dice.dart';
 import 'package:spaces2/spaces2.dart';
 
