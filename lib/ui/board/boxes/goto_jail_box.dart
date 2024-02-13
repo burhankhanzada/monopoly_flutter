@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:monopoly_flutter/models/player.dart';
 import 'package:monopoly_flutter/ui/board/boxes/peice_box.dart';
 import 'package:spaces2/spaces2.dart';
 
 class GoToJailBox extends StatelessWidget {
-  const GoToJailBox({super.key, required this.playerList});
+  const GoToJailBox({super.key, required this.stepNumber});
 
-  final List<Player> playerList;
+  final int stepNumber;
 
   @override
   Widget build(BuildContext context) {
     return PieceBox(
-      playerList: playerList,
+      stepNumber: stepNumber,
       child: Container(
         color: Colors.blue,
         child: Center(

@@ -1,29 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:monopoly_flutter/ui/board/peice.dart';
-import 'package:monopoly_flutter/ui/board/peices.dart';
+import 'package:monopoly_flutter/ui/board/boxes/peice_box.dart';
 import 'package:spaces2/spaces2.dart';
 
 enum BoxPosition { top, left, right, bottom }
 
 class PropertyBox extends StatelessWidget {
-  PropertyBox({
+  const PropertyBox({
     super.key,
     required this.text,
     required this.price,
     required this.color,
     this.houseCount = 0,
     this.isHotel = false,
-    List<Peice>? peiceList,
     required this.position,
-  }) : peiceList = peiceList ?? [];
+    required this.stepNumber,
+  });
 
   final Color color;
   final String text;
   final int price;
   final int houseCount;
   final bool isHotel;
-  final List<Peice> peiceList;
   final BoxPosition position;
+  final int stepNumber;
 
   @override
   Widget build(BuildContext context) {
@@ -121,26 +120,12 @@ class PropertyBox extends StatelessWidget {
     );
   }
 
-  Widget nameWidget() {
-    final textWidget = Text(
-      text,
-      textAlign: TextAlign.center,
-    );
-
-    return RotatedBox(
-      quarterTurns: 1,
-      child: textWidget,
-    );
-  }
-
   Widget namePriceWidget() {
-    Widget child;
-
     final priceWidget = Text(
       '\$$price',
       textAlign: TextAlign.center,
       style: const TextStyle(
-        fontSize: 18,
+        fontSize: 20,
         fontWeight: FontWeight.w900,
       ),
       softWrap: true,
@@ -152,10 +137,12 @@ class PropertyBox extends StatelessWidget {
       softWrap: true,
       style: const TextStyle(
         fontSize: 12,
+        fontWeight: FontWeight.bold
       ),
     );
 
-    child = SpacedColumn.small(
+    final child = SpacedColumn.small(
+      padding: const EdgeInsets.all(4),
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -166,18 +153,9 @@ class PropertyBox extends StatelessWidget {
 
     return Expanded(
       flex: 3,
-      child: Stack(
-        fit: StackFit.expand,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(4),
-            child: child,
-          ),
-          Peices(
-            peiceList: peiceList,
-            isVertical: _isVertical(),
-          ),
-        ],
+      child: PieceBox(
+        stepNumber: stepNumber,
+        child: child,
       ),
     );
   }

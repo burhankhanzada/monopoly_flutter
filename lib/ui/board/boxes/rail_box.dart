@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:monopoly_flutter/constant/enum_constant.dart';
 import 'package:monopoly_flutter/ui/board/boxes/icon_box.dart';
+import 'package:monopoly_flutter/ui/board/boxes/property_box.dart';
 
-class RailRoadBox extends StatelessWidget {
-  const RailRoadBox({
+class RailBox extends StatelessWidget {
+  const RailBox({
     super.key,
     required this.text,
+    required this.stepNumber,
+    this.position = BoxPosition.bottom,
     this.aligment = BoxAligment.vertical,
   });
 
   final String text;
+  final int stepNumber;
   final BoxAligment aligment;
+  final BoxPosition position;
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +29,8 @@ class RailRoadBox extends StatelessWidget {
       text: text,
       icon: icon,
       aligment: aligment,
+      position: position,
+      stepNumber: stepNumber,
     );
   }
 }

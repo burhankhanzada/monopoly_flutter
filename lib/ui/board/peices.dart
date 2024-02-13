@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:monopoly_flutter/ui/board/boxes/property_box.dart';
 import 'package:monopoly_flutter/ui/board/peice.dart';
 
 class Peices extends StatelessWidget {
   const Peices({
     super.key,
-    required this.peiceList,
     this.isVertical = false,
+    required this.peiceList,
+    this.position = BoxPosition.bottom,
   });
 
   final bool isVertical;
+  final BoxPosition position;
   final List<Peice> peiceList;
 
   @override
@@ -16,13 +19,26 @@ class Peices extends StatelessWidget {
     Widget child;
 
     if (isVertical || peiceList.length <= 4) {
-      child = Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: peiceList,
+
+      const paddingSize = 40.0;
+      var padding = EdgeInsets.zero;
+
+      if (position == BoxPosition.left) {
+        padding =  const EdgeInsets.only(right: paddingSize);
+      } else if(position == BoxPosition.right) {
+        padding =  const EdgeInsets.only(left: paddingSize);
+      }
+
+      child = Padding(
+        padding: padding,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: peiceList,
+        ),
       );
     } else {
       final top = peiceList.sublist(0, 3);
-      final bottom = peiceList.sublist(3, 5);
+      final bottom = peiceList.sublist(3);
 
       child = Stack(
         alignment: Alignment.center,

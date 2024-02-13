@@ -16,84 +16,72 @@ final property1 = Property(
   name: propertyName1,
   price: 60,
   rent: 2,
-  houseCount: 1,
 );
 
 final property2 = Property(
   name: propertyName2,
   price: 60,
   rent: 4,
-  houseCount: 2,
 );
 
 final property3 = Property(
   name: propertyName3,
   price: 100,
   rent: 6,
-  houseCount: 3,
 );
 
 final property4 = Property(
   name: propertyName4,
   price: 100,
   rent: 6,
-  houseCount: 4,
 );
 
 final property5 = Property(
   name: propertyName5,
   price: 120,
   rent: 8,
-  isHotel: true,
 );
 
 final property6 = Property(
   name: propertyName6,
   price: 140,
   rent: 10,
-  playerList: [player1],
 );
 
 final property7 = Property(
   name: propertyName7,
   price: 140,
   rent: 10,
-  playerList: [player1, player2],
 );
 
 final property8 = Property(
   name: propertyName8,
   price: 160,
   rent: 1,
-  playerList: [player1, player2, player3],
 );
 
 final property9 = Property(
   name: propertyName9,
   price: 180,
   rent: 14,
-  playerList: [player1, player2, player3, player4],
 );
 
 final property10 = Property(
   name: propertyName10,
   price: 180,
   rent: 14,
-  playerList: [player1, player2, player3, player4, player5],
 );
 
 final property11 = Property(
   name: propertyName11,
   price: 200,
   rent: 16,
-  playerList: [player1, player2, player3, player4, player5, player6],
 );
 
 final property12 = Property(
   name: propertyName12,
   price: 220,
   rent: 18,
-  playerList: [player1, player2, player3, player4, player5, player6],
 );
 
 final property13 = Property(
@@ -157,12 +145,12 @@ final property22 = Property(
 );
 
 final propertyGroup1 = PropertyGroup(
-  color: Colors.brown,
+  color: Colors.purple,
   properties: propertyList1,
 );
 
 final propertyGroup2 = PropertyGroup(
-  color: Colors.cyan,
+  color: Colors.orange,
   properties: propertyList2,
 );
 
@@ -172,7 +160,7 @@ final propertyGroup3 = PropertyGroup(
 );
 
 final propertyGroup4 = PropertyGroup(
-  color: Colors.orange,
+  color: Colors.cyan,
   properties: propertyList4,
 );
 
