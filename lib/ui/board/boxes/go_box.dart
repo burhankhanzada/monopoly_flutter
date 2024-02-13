@@ -17,35 +17,34 @@ class GoBox extends StatelessWidget {
         padding: const EdgeInsets.all(8),
         color: Colors.red,
         child: const Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
               'Collect \$200 Salary as You Pass',
               style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 16,
                   color: Colors.white,
                   fontWeight: FontWeight.w900),
             ),
-            Expanded(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.arrow_back,
-                    size: 56,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.arrow_back,
+                  size: 56,
+                  color: Colors.white,
+                ),
+                Text(
+                  'GO',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 50,
                     color: Colors.white,
+                    fontWeight: FontWeight.w900,
                   ),
-                  Text(
-                    'GO',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 50,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w900,
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             )
           ],
         ),

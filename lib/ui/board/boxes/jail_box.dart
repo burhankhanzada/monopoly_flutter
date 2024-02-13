@@ -22,7 +22,14 @@ class JailBox extends StatelessWidget {
                   padding: EdgeInsets.only(left: 4),
                   child: RotatedBox(
                     quarterTurns: -1,
-                    child: Text(''),
+                    child: Text(
+                      '',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
                   ),
                 ),
                 Expanded(
