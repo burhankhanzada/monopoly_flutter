@@ -10,7 +10,7 @@ final player2 = Player(name: 'Talha', color: Colors.green);
 final player3 = Player(name: 'Bilal', color: Colors.blue);
 final player4 = Player(name: 'Ali', color: Colors.yellow);
 final player5 = Player(name: 'Haad', color: Colors.brown);
-final player6 = Player(name: 'Mahad', color: Colors.pink);
+final player6 = Player(name: 'Mahad', color: Colors.purple);
 
 final property1 = Property(
   name: propertyName1,

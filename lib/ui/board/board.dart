@@ -7,13 +7,15 @@ class Board extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.all(8),
-        child: const FittedBox(
-          child: Stack(
-            children: [
-              VisualBoard(),
-            ],
+      body: SafeArea(
+        child: Container(
+          padding: const EdgeInsets.all(8),
+          child: const FittedBox(
+            child: Stack(
+              children: [
+                VisualBoard(),
+              ],
+            ),
           ),
         ),
       ),

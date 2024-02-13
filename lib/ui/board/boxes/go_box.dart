@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:monopoly_flutter/ui/board/boxes/peice_box.dart';
-import 'package:spaces2/spaces2.dart';
 
 class GoBox extends StatelessWidget {
   const GoBox({
@@ -17,23 +16,23 @@ class GoBox extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(8),
         color: Colors.red,
-        child: const SpacedColumn(
+        child: const Column(
           children: [
             Text(
               'Collect \$200 Salary as You Pass',
               style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 18,
                   color: Colors.white,
                   fontWeight: FontWeight.w900),
             ),
             Expanded(
-              child: SpacedRow(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Icon(
                     Icons.arrow_back,
-                    size: 48,
+                    size: 56,
                     color: Colors.white,
                   ),
                   Text(

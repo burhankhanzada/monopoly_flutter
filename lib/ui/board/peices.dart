@@ -44,7 +44,7 @@ class Peices extends StatelessWidget {
         alignment: Alignment.center,
         children: [
           Positioned(
-            bottom: 20,
+            bottom: 30,
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: bottom,
