@@ -1,9 +1,7 @@
-import 'dart:developer';
-import 'dart:math' as math;
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:monopoly_flutter/state/state.dart';
 import 'package:monopoly_flutter/ui/dice/dice.dart';
 import 'package:spaces2/spaces2.dart';
 
@@ -32,20 +30,15 @@ class _RollRiceState extends ConsumerState<RollRice> {
         ),
         ElevatedButton(
           onPressed: () {
-            final rn = math.Random();
+            final random = Random();
 
             // added +1 in exlude zero 
-            dice1Number = rn.nextInt(6) + 1;
-            dice2Number = rn.nextInt(6) + 1;
-
-            log(dice1Number.toString());
-            log(dice2Number.toString());
+            dice1Number = random.nextInt(6) + 1;
+            dice2Number = random.nextInt(6) + 1;
 
             final total = dice1Number + dice2Number;
 
-            log(total.toString());
-
-            ref.read(playersStepProvider.notifier).updateStep(total);
+            ref.read(diceProvider.notifier).update((state) => total);
 
             setState(() {});
           },

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class Peice extends StatelessWidget {
-  const Peice({
+class Token extends StatelessWidget {
+  const Token({
     super.key,
     required this.color,
   });
@@ -12,7 +12,7 @@ class Peice extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SvgPicture(
-      height: 40,
+      // height: 80,
       SvgAssetLoader(
         'assets/icons/peice.svg',
         colorMapper: MyColorMapper(color: color),

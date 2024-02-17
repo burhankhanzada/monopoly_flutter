@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:monopoly_flutter/state/state.dart';
-import 'package:monopoly_flutter/ui/board/boxes/property_box.dart';
-import 'package:monopoly_flutter/ui/board/peice.dart';
+import 'package:monopoly_flutter/ui/board/grid/boxes/property_box.dart';
+import 'package:monopoly_flutter/ui/token/token.dart';
 import 'package:monopoly_flutter/ui/board/peices.dart';
 
 class PieceBox extends ConsumerWidget {
@@ -35,7 +35,7 @@ class PieceBox extends ConsumerWidget {
         child,
         Peices(
           position: position,
-          peiceList: peicesList.map((e) => Peice(color: e.color)).toList(),
+          peiceList: peicesList.map((e) => Token(color: e.color)).toList(),
         ),
       ],
     );

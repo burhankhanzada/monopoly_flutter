@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:monopoly_flutter/constant/enum_constant.dart';
-import 'package:monopoly_flutter/ui/board/boxes/peice_box.dart';
-import 'package:monopoly_flutter/ui/board/boxes/property_box.dart';
+import 'package:monopoly_flutter/ui/board/grid/boxes/peice_box.dart';
+import 'package:monopoly_flutter/ui/board/grid/boxes/property_box.dart';
 import 'package:spaces2/spaces2.dart';
 
 class IconBox extends StatelessWidget {

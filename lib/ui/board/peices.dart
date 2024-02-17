@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:monopoly_flutter/ui/board/boxes/property_box.dart';
-import 'package:monopoly_flutter/ui/board/peice.dart';
+import 'package:monopoly_flutter/ui/board/grid/boxes/property_box.dart';
+import 'package:monopoly_flutter/ui/token/token.dart';
 
 class Peices extends StatelessWidget {
   const Peices({
@@ -12,7 +12,7 @@ class Peices extends StatelessWidget {
 
   final bool isVertical;
   final BoxPosition position;
-  final List<Peice> peiceList;
+  final List<Token> peiceList;
 
   @override
   Widget build(BuildContext context) {

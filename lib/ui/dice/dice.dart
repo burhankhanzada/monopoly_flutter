@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+final diceProvider = StateProvider((ref) => 0);
 
 class Dice extends StatelessWidget {
   const Dice({super.key, required this.number});

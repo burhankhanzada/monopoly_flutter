@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:monopoly_flutter/constant/enum_constant.dart';
-import 'package:monopoly_flutter/ui/board/boxes/icon_box.dart';
-import 'package:monopoly_flutter/ui/board/boxes/property_box.dart';
+import 'package:monopoly_flutter/ui/board/grid/boxes/icon_box.dart';
+import 'package:monopoly_flutter/ui/board/grid/boxes/property_box.dart';
 
-class ChanceBox extends StatelessWidget {
-  const ChanceBox({
+class ChestBox extends StatelessWidget {
+  const ChestBox({
     super.key,
     required this.stepNumber,
     this.position = BoxPosition.bottom,
@@ -12,23 +12,23 @@ class ChanceBox extends StatelessWidget {
   });
 
   final int stepNumber;
-  final BoxPosition position;
   final BoxAligment aligment;
+  final BoxPosition position;
 
   @override
   Widget build(BuildContext context) {
     const icon = Icon(
-      Icons.question_mark,
+      Icons.unarchive,
       size: 48,
-      color: Colors.purple,
+      color: Colors.brown,
     );
 
     return IconBox(
       icon: icon,
-      text: 'Chance',
       aligment: aligment,
       position: position,
       stepNumber: stepNumber,
+      text: 'Community Chest',
     );
   }
 }

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:monopoly_flutter/ui/board/boxes/peice_box.dart';
+import 'package:monopoly_flutter/ui/board/grid/boxes/peice_box.dart';
 import 'package:spaces2/spaces2.dart';
 
-class GoToJailBox extends StatelessWidget {
-  const GoToJailBox({super.key, required this.stepNumber});
+class FreeParkBox extends StatelessWidget {
+  const FreeParkBox({
+    super.key,
+    required this.stepNumber,
+  });
 
   final int stepNumber;
 
@@ -12,13 +15,13 @@ class GoToJailBox extends StatelessWidget {
     return PieceBox(
       stepNumber: stepNumber,
       child: Container(
-        color: Colors.blue,
+        color: Colors.green,
         child: Center(
           child: SpacedColumn(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
-                'Go To Jail',
+                'Free Parking',
                 style: TextStyle(
                   fontSize: 20,
                   color: Colors.white,
@@ -26,7 +29,7 @@ class GoToJailBox extends StatelessWidget {
                 ),
               ),
               Image.asset(
-                'assets/icons/police.png',
+                'assets/icons/free_parking.png',
                 height: 100,
                 color: Colors.white,
               ),

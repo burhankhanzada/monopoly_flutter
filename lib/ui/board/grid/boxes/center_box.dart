@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:monopoly_flutter/ui/roll_dice.dart';
+import 'package:monopoly_flutter/ui/dice/roll_dice.dart';
 
 class CenterBox extends StatelessWidget {
   const CenterBox({super.key});

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:monopoly_flutter/ui/board/boxes/peice_box.dart';
+import 'package:monopoly_flutter/ui/board/grid/boxes/peice_box.dart';
 import 'package:spaces2/spaces2.dart';
 
 enum BoxPosition { top, left, right, bottom }
@@ -16,13 +16,13 @@ class PropertyBox extends StatelessWidget {
     required this.stepNumber,
   });
 
+  final int price;
   final Color color;
   final String text;
-  final int price;
-  final int houseCount;
   final bool isHotel;
-  final BoxPosition position;
   final int stepNumber;
+  final int houseCount;
+  final BoxPosition position;
 
   @override
   Widget build(BuildContext context) {

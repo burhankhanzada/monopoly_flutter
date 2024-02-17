@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:monopoly_flutter/ui/board/boxes/peice_box.dart';
+import 'package:monopoly_flutter/ui/board/grid/boxes/peice_box.dart';
 
 class JailBox extends StatelessWidget {
   const JailBox({
