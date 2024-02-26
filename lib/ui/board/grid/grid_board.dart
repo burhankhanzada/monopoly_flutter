@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:monopoly_flutter/constant/enum_constant.dart';
-import 'package:monopoly_flutter/constant/object_constant.dart';
-import 'package:monopoly_flutter/constant/string_constant.dart';
+import 'package:monopoly_flutter/constants/enum_constant.dart';
+import 'package:monopoly_flutter/constants/object_constant.dart';
+import 'package:monopoly_flutter/constants/string_constant.dart';
 import 'package:monopoly_flutter/models/property_group.dart';
-import 'package:monopoly_flutter/state/state.dart';
 import 'package:monopoly_flutter/ui/board/grid/boxes/center_box.dart';
 import 'package:monopoly_flutter/ui/board/grid/boxes/chance_box.dart';
 import 'package:monopoly_flutter/ui/board/grid/boxes/chest_box.dart';
@@ -17,6 +16,7 @@ import 'package:monopoly_flutter/ui/board/grid/boxes/icon_box.dart';
 import 'package:monopoly_flutter/ui/board/grid/boxes/jail_box.dart';
 import 'package:monopoly_flutter/ui/board/grid/boxes/property_box.dart';
 import 'package:monopoly_flutter/ui/board/grid/boxes/rail_box.dart';
+import 'package:monopoly_flutter/utils/size_offset_util.dart';
 
 class GridBoard extends ConsumerStatefulWidget {
   const GridBoard({super.key});
@@ -42,25 +42,9 @@ class _VisualBoardState extends ConsumerState<GridBoard> {
 
   @override
   Widget build(BuildContext context) {
-    // final currentPlayer = ref.read(currentPlayerIndexProvider);
-
-    // late final stepNumber = ref.watch(playersStepProvider)[currentPlayer].step;
-
-    // for (var e in children) {
-    //   if (e.areaName == stepNumber.toString()) {
-    //     // print(e.areaName);
-    //   }
-    //   ;
-    // }
-
-    return Container(
-      width: 1000,
-      height: 1000,
-      color: Colors.black,
-      padding: const EdgeInsets.all(2),
+    return SizedBox.square(
+      dimension: boardSize,
       child: LayoutGrid(
-        rowGap: 2,
-        columnGap: 2,
         areas: '''
               20 21 22 23 24 25 26 27 28 29 30
               19 c c c c c c c c c 31
@@ -75,7 +59,7 @@ class _VisualBoardState extends ConsumerState<GridBoard> {
               10 9 8 7 6 5 4 3 2 1 0
               ''',
         rowSizes: [
-          150.px,
+          cornerSize.px,
           1.fr,
           1.fr,
           1.fr,
@@ -85,10 +69,10 @@ class _VisualBoardState extends ConsumerState<GridBoard> {
           1.fr,
           1.fr,
           1.fr,
-          150.px
+          cornerSize.px
         ],
         columnSizes: [
-          150.px,
+          cornerSize.px,
           1.fr,
           1.fr,
           1.fr,
@@ -98,7 +82,7 @@ class _VisualBoardState extends ConsumerState<GridBoard> {
           1.fr,
           1.fr,
           1.fr,
-          150.px
+          cornerSize.px
         ],
         children: children,
       ),
@@ -219,12 +203,12 @@ class _VisualBoardState extends ConsumerState<GridBoard> {
       ...propertyGroupBoxesList(
         stepNumbers: [1, 3],
         position: BoxPosition.bottom,
-        propertyGroup: propertyGroup1,
+        propertyGroup: propertySet1,
       ),
       ...propertyGroupBoxesList(
         stepNumbers: [6, 8, 9],
         position: BoxPosition.bottom,
-        propertyGroup: propertyGroup2,
+        propertyGroup: propertySet2,
       ),
     ];
   }
@@ -234,12 +218,12 @@ class _VisualBoardState extends ConsumerState<GridBoard> {
       ...propertyGroupBoxesList(
         stepNumbers: [11, 13, 14],
         position: BoxPosition.left,
-        propertyGroup: propertyGroup3,
+        propertyGroup: propertySet3,
       ),
       ...propertyGroupBoxesList(
         stepNumbers: [16, 18, 19],
         position: BoxPosition.left,
-        propertyGroup: propertyGroup4,
+        propertyGroup: propertySet4,
       ),
     ];
   }
@@ -249,12 +233,12 @@ class _VisualBoardState extends ConsumerState<GridBoard> {
       ...propertyGroupBoxesList(
         stepNumbers: [21, 23, 24],
         position: BoxPosition.top,
-        propertyGroup: propertyGroup5,
+        propertyGroup: propertySet5,
       ),
       ...propertyGroupBoxesList(
         stepNumbers: [26, 27, 29],
         position: BoxPosition.top,
-        propertyGroup: propertyGroup6,
+        propertyGroup: propertySet6,
       ),
     ];
   }
@@ -264,12 +248,12 @@ class _VisualBoardState extends ConsumerState<GridBoard> {
       ...propertyGroupBoxesList(
         stepNumbers: [31, 32, 34],
         position: BoxPosition.right,
-        propertyGroup: propertyGroup7,
+        propertyGroup: propertySet7,
       ),
       ...propertyGroupBoxesList(
         stepNumbers: [37, 39],
         position: BoxPosition.right,
-        propertyGroup: propertyGroup8,
+        propertyGroup: propertySet8,
       ),
     ];
   }
@@ -277,7 +261,7 @@ class _VisualBoardState extends ConsumerState<GridBoard> {
   List<NamedAreaGridPlacement> propertyGroupBoxesList({
     required BoxPosition position,
     required List<int> stepNumbers,
-    required PropertyGroup propertyGroup,
+    required PropertySetModel propertyGroup,
   }) {
     final list = <NamedAreaGridPlacement>[];
 

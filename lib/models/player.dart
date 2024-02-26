@@ -1,28 +1,13 @@
-import 'package:flutter/material.dart';
+import 'package:monopoly_flutter/models/token.dart';
 
-class Player {
+class PlayerModel {
+  int id;
   String name;
-  Color color;
-  int step;
+  TokenModel token;
 
-  Player({
+  PlayerModel({
+    required this.id,
     required this.name,
-    required this.color,
-    this.step = 0,
+    required this.token,
   });
-
-  Player copyWith({
-    String? name,
-    Color? color,
-    int? step,
-  }) {
-    return Player(
-      name: name ?? this.name,
-      color: color ?? this.color,
-      step: step ?? this.step,
-    );
-  }
-
-  @override
-  String toString() => 'Player(name: $name, color: $color, step: $step)';
 }

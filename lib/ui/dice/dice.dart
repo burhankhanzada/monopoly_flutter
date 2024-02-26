@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-final diceProvider = StateProvider((ref) => 0);
+import 'package:monopoly_flutter/utils/paint_util.dart';
+import 'package:monopoly_flutter/utils/size_offset_util.dart';
 
 class Dice extends StatelessWidget {
   const Dice({super.key, required this.number});
@@ -20,12 +19,12 @@ class Dice extends StatelessWidget {
     };
 
     return Container(
-      width: 50,
-      height: 50,
+      width: diceSize,
+      height: diceSize,
       padding: const EdgeInsets.all(6),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: Colors.black, width: 2),
+        border: Border.all(width: strokeWidth),
       ),
       child: numberWidget,
     );
@@ -33,7 +32,7 @@ class Dice extends StatelessWidget {
 
   Widget dot() {
     return const CircleAvatar(
-      radius: 4,
+      radius: diceDotSize,
       backgroundColor: Colors.black,
     );
   }

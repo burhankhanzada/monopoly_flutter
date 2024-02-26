@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:monopoly_flutter/ui/dice/roll_dice.dart';
+import 'package:monopoly_flutter/utils/paint_util.dart';
 
 class CenterBox extends StatelessWidget {
   const CenterBox({super.key});
@@ -7,10 +7,13 @@ class CenterBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
-      child: const Center(
-        child: RollRice(),
+      decoration: BoxDecoration(
+        border: border,
+        color: Colors.white,
       ),
+      // child: const Center(
+      //   child: RollRice(),
+      // ),
     );
   }
 }

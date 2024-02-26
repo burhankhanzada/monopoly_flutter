@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:monopoly_flutter/constant/enum_constant.dart';
+import 'package:monopoly_flutter/constants/enum_constant.dart';
 import 'package:monopoly_flutter/ui/board/grid/boxes/icon_box.dart';
 import 'package:monopoly_flutter/ui/board/grid/boxes/property_box.dart';
 

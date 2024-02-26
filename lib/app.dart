@@ -10,8 +10,10 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: const Home(),
-      theme: ThemeData(textTheme: GoogleFonts.latoTextTheme()),
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        textTheme: GoogleFonts.latoTextTheme(),
+      ),
       builder: (context, child) => Spacing.fixed(
         data: SpacingData.generate(8),
         child: child!,

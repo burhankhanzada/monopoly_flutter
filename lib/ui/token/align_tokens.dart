@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:monopoly_flutter/ui/board/grid/boxes/property_box.dart';
-import 'package:monopoly_flutter/ui/token/token.dart';
+import 'package:monopoly_flutter/ui/token/static_token.dart';
 
-class Peices extends StatelessWidget {
-  const Peices({
+class AlignTokens extends StatelessWidget {
+  const AlignTokens({
     super.key,
     this.isVertical = false,
-    required this.peiceList,
+    required this.tokenList,
     this.position = BoxPosition.bottom,
   });
 
   final bool isVertical;
   final BoxPosition position;
-  final List<Token> peiceList;
+  final List<StaticToken> tokenList;
 
   @override
   Widget build(BuildContext context) {
     Widget child;
 
-    if (isVertical || peiceList.length <= 4) {
+    if (isVertical || tokenList.length <= 4) {
 
       const paddingSize = 40.0;
       var padding = EdgeInsets.zero;
@@ -33,12 +33,12 @@ class Peices extends StatelessWidget {
         padding: padding,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: peiceList,
+          children: tokenList,
         ),
       );
     } else {
-      final top = peiceList.sublist(0, 3);
-      final bottom = peiceList.sublist(3);
+      final top = tokenList.sublist(0, 3);
+      final bottom = tokenList.sublist(3);
 
       child = Stack(
         alignment: Alignment.center,

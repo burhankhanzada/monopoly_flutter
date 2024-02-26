@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:monopoly_flutter/ui/board/grid/boxes/property_box.dart';
-import 'package:monopoly_flutter/ui/canvas_size_util.dart';
+import 'package:monopoly_flutter/utils/paint_util.dart';
+import 'package:monopoly_flutter/utils/size_offset_util.dart';
 
 class StepsUtil {
   final Canvas canvas;
-  final SizeOffsetUtil sizeOffsetUtil;
 
-  StepsUtil(this.canvas, this.sizeOffsetUtil) {
-    drawNonCornersSteps();
+  StepsUtil(this.canvas) {
+    _drawNonCornersSteps();
   }
 
-  void drawNonCornersSteps() {
+  void _drawNonCornersSteps() {
     _drawTopSteps();
     _drawLeftSteps();
     _drawRightSteps();
@@ -25,41 +25,41 @@ class StepsUtil {
 
     if (position == BoxPosition.top) {
       rect = Rect.fromLTWH(
-        sizeOffsetUtil.cornerSize + index * sizeOffsetUtil.nonCornerSize,
-        sizeOffsetUtil.topOffset,
-        sizeOffsetUtil.nonCornerSize,
-        sizeOffsetUtil.cornerSize,
+        cornerSize + index * nonCornerSize,
+        topOffset,
+        nonCornerSize,
+        cornerSize,
       );
     }
 
     if (position == BoxPosition.left) {
       rect = Rect.fromLTWH(
-        sizeOffsetUtil.leftOffset,
-        sizeOffsetUtil.cornerSize + index * sizeOffsetUtil.nonCornerSize,
-        sizeOffsetUtil.cornerSize,
-        sizeOffsetUtil.nonCornerSize,
+        leftOffset,
+        cornerSize + index * nonCornerSize,
+        cornerSize,
+        nonCornerSize,
       );
     }
 
     if (position == BoxPosition.right) {
       rect = Rect.fromLTWH(
-        sizeOffsetUtil.rightOffset - sizeOffsetUtil.cornerSize,
-        sizeOffsetUtil.cornerSize + index * sizeOffsetUtil.nonCornerSize,
-        sizeOffsetUtil.cornerSize,
-        sizeOffsetUtil.nonCornerSize,
+        rightOffset - cornerSize,
+        cornerSize + index * nonCornerSize,
+        cornerSize,
+        nonCornerSize,
       );
     }
 
     if (position == BoxPosition.bottom) {
       rect = Rect.fromLTWH(
-        sizeOffsetUtil.cornerSize + index * sizeOffsetUtil.nonCornerSize,
-        sizeOffsetUtil.bottomOffset - sizeOffsetUtil.cornerSize,
-        sizeOffsetUtil.nonCornerSize,
-        sizeOffsetUtil.cornerSize,
+        cornerSize + index * nonCornerSize,
+        bottomOffset - cornerSize,
+        nonCornerSize,
+        cornerSize,
       );
     }
 
-    canvas.drawRect(rect, sizeOffsetUtil.strokePaint);
+    canvas.drawRect(rect, strokePaint);
   }
 
   void _drawPropertyBox({
@@ -71,43 +71,41 @@ class StepsUtil {
 
     if (position == BoxPosition.top) {
       rect = Rect.fromLTWH(
-        sizeOffsetUtil.cornerSize + index * sizeOffsetUtil.nonCornerSize,
-        sizeOffsetUtil.cornerSize - sizeOffsetUtil.propertyHeaderSize,
-        sizeOffsetUtil.nonCornerSize,
-        sizeOffsetUtil.propertyHeaderSize,
+        cornerSize + index * nonCornerSize,
+        cornerSize - propertyHeaderSize,
+        nonCornerSize,
+        propertyHeaderSize,
       );
     }
 
     if (position == BoxPosition.left) {
       rect = Rect.fromLTWH(
-        sizeOffsetUtil.cornerSize - sizeOffsetUtil.propertyHeaderSize,
-        sizeOffsetUtil.cornerSize + index * sizeOffsetUtil.nonCornerSize,
-        sizeOffsetUtil.propertyHeaderSize,
-        sizeOffsetUtil.nonCornerSize,
+        cornerSize - propertyHeaderSize,
+        cornerSize + index * nonCornerSize,
+        propertyHeaderSize,
+        nonCornerSize,
       );
     }
 
     if (position == BoxPosition.right) {
       rect = Rect.fromLTWH(
-        sizeOffsetUtil.rightOffset - sizeOffsetUtil.cornerSize,
-        sizeOffsetUtil.cornerSize + index * sizeOffsetUtil.nonCornerSize,
-        sizeOffsetUtil.propertyHeaderSize,
-        sizeOffsetUtil.nonCornerSize,
+        rightOffset - cornerSize,
+        cornerSize + index * nonCornerSize,
+        propertyHeaderSize,
+        nonCornerSize,
       );
     }
 
     if (position == BoxPosition.bottom) {
       rect = Rect.fromLTWH(
-        sizeOffsetUtil.cornerSize + index * sizeOffsetUtil.nonCornerSize,
-        sizeOffsetUtil.bottomOffset - sizeOffsetUtil.cornerSize,
-        sizeOffsetUtil.nonCornerSize,
-        sizeOffsetUtil.propertyHeaderSize,
+        cornerSize + index * nonCornerSize,
+        bottomOffset - cornerSize,
+        nonCornerSize,
+        propertyHeaderSize,
       );
     }
 
-    sizeOffsetUtil.fillPaint.color = color;
-    canvas.drawRect(rect, sizeOffsetUtil.fillPaint);
-    canvas.drawRect(rect, sizeOffsetUtil.strokePaint);
+    canvas.drawRect(rect, strokePaint);
   }
 
   void _drawTopSteps() {

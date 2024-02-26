@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:monopoly_flutter/ui/board/grid/boxes/peice_box.dart';
+import 'package:monopoly_flutter/ui/board/grid/boxes/tokens_box.dart';
+import 'package:monopoly_flutter/utils/paint_util.dart';
 import 'package:spaces2/spaces2.dart';
 
 class GoToJailBox extends StatelessWidget {
@@ -9,10 +10,13 @@ class GoToJailBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PieceBox(
+    return TokensBox(
       stepNumber: stepNumber,
       child: Container(
-        color: Colors.blue,
+        decoration: BoxDecoration(
+          border: border,
+          color: Colors.blue,
+        ),
         child: Center(
           child: SpacedColumn(
             mainAxisAlignment: MainAxisAlignment.center,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:monopoly_flutter/ui/board/grid/boxes/peice_box.dart';
+import 'package:monopoly_flutter/ui/board/grid/boxes/tokens_box.dart';
+import 'package:monopoly_flutter/utils/paint_util.dart';
 import 'package:spaces2/spaces2.dart';
 
 enum BoxPosition { top, left, right, bottom }
@@ -30,28 +31,28 @@ class PropertyBox extends StatelessWidget {
       BoxPosition.top => Column(
           children: [
             namePriceWidget(),
-            divider(),
+            // divider(),
             _colorWidget(),
           ],
         ),
       BoxPosition.bottom => Column(
           children: [
             _colorWidget(),
-            divider(),
+            // divider(),
             namePriceWidget(),
           ],
         ),
       BoxPosition.left => Row(
           children: [
             namePriceWidget(),
-            divider(),
+            // divider(),
             _colorWidget(),
           ],
         ),
       BoxPosition.right => Row(
           children: [
             _colorWidget(),
-            divider(),
+            // divider(),
             namePriceWidget(),
           ],
         ),
@@ -74,9 +75,12 @@ class PropertyBox extends StatelessWidget {
   Widget _colorWidget() {
     return Expanded(
       child: Container(
+        decoration: BoxDecoration(
+          color: color,
+          border: border,
+        ),
         width: double.maxFinite,
         height: double.maxFinite,
-        color: color,
         child: isHotel
             ? const Icon(
                 Icons.apartment,
@@ -112,13 +116,13 @@ class PropertyBox extends StatelessWidget {
     return child;
   }
 
-  Widget divider() {
-    return Container(
-      color: Colors.black,
-      width: _isVertical() ? 2 : null,
-      height: _isHorizontal() ? 2 : null,
-    );
-  }
+  // Widget divider() {
+  //   return Container(
+  //     color: Colors.black,
+  //     width: _isVertical() ? strokeWidth : null,
+  //     height: _isHorizontal() ? strokeWidth : null,
+  //   );
+  // }
 
   Widget namePriceWidget() {
     final priceWidget = Text(
@@ -135,15 +139,11 @@ class PropertyBox extends StatelessWidget {
       text,
       textAlign: TextAlign.center,
       softWrap: true,
-      style: const TextStyle(
-        fontSize: 12,
-        fontWeight: FontWeight.bold
-      ),
+      style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
     );
 
-    final child = SpacedColumn.small(
+    Widget child = SpacedColumn.small(
       padding: const EdgeInsets.all(4),
-      mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         priceWidget,
@@ -151,9 +151,17 @@ class PropertyBox extends StatelessWidget {
       ],
     );
 
+    child = Container(
+      decoration: BoxDecoration(
+          border: border,
+          color: Colors.white,
+        ),
+      child: child,
+    );
+
     return Expanded(
       flex: 3,
-      child: PieceBox(
+      child: TokensBox(
         stepNumber: stepNumber,
         child: child,
       ),

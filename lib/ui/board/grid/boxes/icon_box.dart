@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:monopoly_flutter/constant/enum_constant.dart';
-import 'package:monopoly_flutter/ui/board/grid/boxes/peice_box.dart';
+import 'package:monopoly_flutter/constants/enum_constant.dart';
+import 'package:monopoly_flutter/ui/board/grid/boxes/tokens_box.dart';
 import 'package:monopoly_flutter/ui/board/grid/boxes/property_box.dart';
+import 'package:monopoly_flutter/utils/paint_util.dart';
 import 'package:spaces2/spaces2.dart';
 
 class IconBox extends StatelessWidget {
@@ -22,7 +23,6 @@ class IconBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final textWidget = Text(
       text,
       softWrap: true,
@@ -30,7 +30,7 @@ class IconBox extends StatelessWidget {
       textAlign: TextAlign.center,
     );
 
-    Widget child = PieceBox(
+    Widget child = TokensBox(
       position: position,
       stepNumber: stepNumber,
       child: SpacedColumn(
@@ -44,7 +44,7 @@ class IconBox extends StatelessWidget {
     );
 
     if (aligment == BoxAligment.horizontal) {
-      child = PieceBox(
+      child = TokensBox(
         position: position,
         stepNumber: stepNumber,
         child: SpacedRow(
@@ -59,9 +59,12 @@ class IconBox extends StatelessWidget {
     }
 
     return Container(
-      color: Colors.white,
       width: double.maxFinite,
       height: double.maxFinite,
+      decoration: BoxDecoration(
+        border: border,
+        color: Colors.white,
+      ),
       child: child,
     );
   }

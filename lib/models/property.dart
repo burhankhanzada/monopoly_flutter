@@ -1,16 +1,13 @@
-import 'package:monopoly_flutter/models/player.dart';
-
-class Property {
+class PropertyModel {
   final int rent;
   final int price;
   final String name;
   final int houseCount;
 
-  Property({
+  PropertyModel({
     required this.name,
     required this.rent,
     required this.price,
     this.houseCount = 0,
-    List<Player>? playerList,
   });
 }

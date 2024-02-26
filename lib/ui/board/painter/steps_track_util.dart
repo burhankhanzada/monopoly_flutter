@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:monopoly_flutter/ui/canvas_size_util.dart';
+import 'package:monopoly_flutter/utils/size_offset_util.dart';
 
 class StepsTrackUtil {
-  final SizeOffsetUtil sizeOffsetUtil;
   final Function(List<List<Rect>> tracks) trackCalculationListener;
 
   StepsTrackUtil({
-    required this.sizeOffsetUtil,
     required this.trackCalculationListener,
   }) {
     _calculatePlayerTracks();
@@ -21,37 +19,37 @@ class StepsTrackUtil {
     for (int stepIndex = 0; stepIndex < 39; stepIndex++) {
       // Go Box
       if (stepIndex == 0) {
-        var offset = sizeOffsetUtil.cornerSize / 2;
+        var offset = cornerSize / 2;
         prevOffset = Offset(
-          sizeOffsetUtil.rightOffset - offset,
-          sizeOffsetUtil.bottomOffset - offset,
+          rightOffset - offset,
+          bottomOffset - offset,
         );
       }
 
       // Jail Box
       if (stepIndex == 10) {
-        var offset = sizeOffsetUtil.cornerSize / 2;
+        var offset = cornerSize / 2;
         prevOffset = Offset(
-          sizeOffsetUtil.leftOffset + offset,
-          sizeOffsetUtil.bottomOffset - offset,
+          leftOffset + offset,
+          bottomOffset - offset,
         );
       }
 
       // Free Parking Box
       if (stepIndex == 20) {
-        var offset = sizeOffsetUtil.cornerSize / 2;
+        var offset = cornerSize / 2;
         prevOffset = Offset(
-          sizeOffsetUtil.leftOffset - offset,
-          sizeOffsetUtil.topOffset + offset,
+          leftOffset - offset,
+          topOffset + offset,
         );
       }
 
       // Go to Jail Box
       if (stepIndex == 30) {
-        var offset = sizeOffsetUtil.cornerSize / 2;
+        var offset = cornerSize / 2;
         prevOffset = Offset(
-          sizeOffsetUtil.rightOffset - offset,
-          sizeOffsetUtil.topOffset + offset,
+          rightOffset - offset,
+          topOffset + offset,
         );
       }
 
@@ -93,8 +91,8 @@ class StepsTrackUtil {
       //     stepIndex == 30) {
       prevRect = Rect.fromCenter(
         center: prevOffset,
-        width: sizeOffsetUtil.cornerSize,
-        height: sizeOffsetUtil.cornerSize,
+        width: cornerSize,
+        height: cornerSize,
       );
       // } else {
       //   prevRect = Rect.fromCenter(

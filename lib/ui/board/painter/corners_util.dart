@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:monopoly_flutter/ui/canvas_size_util.dart';
+import 'package:monopoly_flutter/utils/paint_util.dart';
+import 'package:monopoly_flutter/utils/size_offset_util.dart';
 
 class CornersUtil {
   final Canvas canvas;
-  final SizeOffsetUtil sizeOffsetUtil;
 
-  CornersUtil(this.canvas, this.sizeOffsetUtil) {
-    drawCornersSteps();
+  CornersUtil(this.canvas) {
+    _drawCornersSteps();
   }
 
-  void drawCornersSteps() {
-    _drawTopLeftCornerStep();
-    _drawTopRightCornerStep();
-    _drawBottomLeftCornerStep();
-    _drawBottomRightCornerStep();
+
+  void _drawCornersSteps() {
+    _drawGoStep();
+    _drawJailStep();
+    _drawFreeParkingStep();
+    _drawGoToJailStep();
   }
 
   void _drawCorner({
@@ -24,43 +25,41 @@ class CornersUtil {
     final rect = Rect.fromLTWH(
       leftOffset,
       topOffset,
-      sizeOffsetUtil.cornerSize,
-      sizeOffsetUtil.cornerSize,
+      cornerSize,
+      cornerSize,
     );
-    sizeOffsetUtil.fillPaint.color = color;
-    canvas.drawRect(rect, sizeOffsetUtil.fillPaint);
-    canvas.drawRect(rect, sizeOffsetUtil.strokePaint);
+    canvas.drawRect(rect, strokePaint);
   }
 
-  void _drawTopLeftCornerStep() {
-    _drawCorner(
-      color: Colors.green,
-      topOffset: sizeOffsetUtil.topOffset,
-      leftOffset: sizeOffsetUtil.leftOffset,
-    );
-  }
-
-  void _drawTopRightCornerStep() {
-    _drawCorner(
-      color: Colors.blue,
-      topOffset: sizeOffsetUtil.topOffset,
-      leftOffset: sizeOffsetUtil.rightOffset - sizeOffsetUtil.cornerSize,
-    );
-  }
-
-  void _drawBottomLeftCornerStep() {
-    _drawCorner(
-      color: Colors.grey,
-      topOffset: sizeOffsetUtil.bottomOffset - sizeOffsetUtil.cornerSize,
-      leftOffset: sizeOffsetUtil.leftOffset,
-    );
-  }
-
-  void _drawBottomRightCornerStep() {
+  void _drawGoStep() {
     _drawCorner(
       color: Colors.red,
-      topOffset: sizeOffsetUtil.bottomOffset - sizeOffsetUtil.cornerSize,
-      leftOffset: sizeOffsetUtil.rightOffset - sizeOffsetUtil.cornerSize,
+      topOffset: bottomOffset - cornerSize,
+      leftOffset: rightOffset - cornerSize,
+    );
+  }
+
+  void _drawJailStep() {
+    _drawCorner(
+      color: Colors.grey,
+      topOffset: bottomOffset - cornerSize,
+      leftOffset: leftOffset,
+    );
+  }
+
+  void _drawFreeParkingStep() {
+    _drawCorner(
+      color: Colors.green,
+      topOffset: topOffset,
+      leftOffset: leftOffset,
+    );
+  }
+
+  void _drawGoToJailStep() {
+    _drawCorner(
+      color: Colors.blue,
+      topOffset: topOffset,
+      leftOffset: rightOffset - cornerSize,
     );
   }
 }

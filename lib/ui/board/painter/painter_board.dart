@@ -2,21 +2,19 @@
 import 'package:flutter/material.dart';
 
 import 'package:monopoly_flutter/ui/board/painter/corners_util.dart';
-import 'package:monopoly_flutter/ui/canvas_size_util.dart';
 import 'package:monopoly_flutter/ui/board/painter/steps_utl.dart';
+import 'package:monopoly_flutter/utils/size_offset_util.dart';
 
-class BoardpPainter extends StatelessWidget {
-  const BoardpPainter({super.key});
+class PainterBoard extends StatelessWidget {
+  const PainterBoard({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        CustomPaint(
-          painter: BoardPainter(),
-          size: const Size.square(1000),
-        ),
-      ],
+    return SizedBox.square(
+      dimension: boardSize,
+      child: CustomPaint(
+        painter: BoardPainter(),
+      ),
     );
   }
 }
@@ -24,11 +22,10 @@ class BoardpPainter extends StatelessWidget {
 class BoardPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    final sizeOffsetUtil = SizeOffsetUtil();
 
-    CornersUtil(canvas, sizeOffsetUtil);
+    CornersUtil(canvas);
 
-    StepsUtil(canvas, sizeOffsetUtil);
+    StepsUtil(canvas);
   }
 
   @override
