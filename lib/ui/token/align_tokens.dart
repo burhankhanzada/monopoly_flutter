@@ -18,7 +18,7 @@ class AlignTokens extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget child;
 
-    if (isVertical || tokenList.length <= 4) {
+    if (isVertical || tokenList.length < 4) {
 
       const paddingSize = 40.0;
       var padding = EdgeInsets.zero;

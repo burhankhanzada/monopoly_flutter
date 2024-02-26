@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:monopoly_flutter/notifiers/tokens_notifer.dart';
+import 'package:monopoly_flutter/ui/token/static_token.dart';
 
 class AnimatedToken extends ConsumerStatefulWidget {
   const AnimatedToken({super.key});
 
   @override
-  ConsumerState<AnimatedToken> createState() => _TokenState();
+  ConsumerState<AnimatedToken> createState() => _AnimatedTokenState();
 }
 
-class _TokenState extends ConsumerState<AnimatedToken>
+class _AnimatedTokenState extends ConsumerState<AnimatedToken>
     with TickerProviderStateMixin {
   late TokensNotifier tokensNotifier;
 
@@ -28,12 +29,7 @@ class _TokenState extends ConsumerState<AnimatedToken>
 
     final token = tokensNotifier.token;
 
-    final svg = SvgPicture(
-      SvgAssetLoader(
-        'assets/icons/peice.svg',
-        colorMapper: MyColorMapper(color: token.color),
-      ),
-    );
+    final svg = StaticToken(color: token.color);
 
     if (!token.isAnimating) return const SizedBox();
 
