@@ -1,25 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:monopoly_flutter/models/player.dart';
-import 'package:monopoly_flutter/ui/board/boxes/peice_box.dart';
+import 'package:monopoly_flutter/ui/board/grid/boxes/tokens_box.dart';
+import 'package:monopoly_flutter/utils/paint_util.dart';
 import 'package:spaces2/spaces2.dart';
 
-class GoToJailBox extends StatelessWidget {
-  const GoToJailBox({super.key, required this.playerList});
+class FreeParkBox extends StatelessWidget {
+  const FreeParkBox({
+    super.key,
+    required this.stepNumber,
+  });
 
-  final List<Player> playerList;
+  final int stepNumber;
 
   @override
   Widget build(BuildContext context) {
-    return PieceBox(
-      playerList: playerList,
+    return TokensBox(
+      stepNumber: stepNumber,
       child: Container(
-        color: Colors.blue,
+        decoration: BoxDecoration(
+          border: border,
+          color: Colors.green,
+        ),
         child: Center(
           child: SpacedColumn(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
-                'Go To Jail',
+                'Free Parking',
                 style: TextStyle(
                   fontSize: 20,
                   color: Colors.white,
@@ -27,7 +33,7 @@ class GoToJailBox extends StatelessWidget {
                 ),
               ),
               Image.asset(
-                'assets/icons/police.png',
+                'assets/icons/free_parking.png',
                 height: 100,
                 color: Colors.white,
               ),

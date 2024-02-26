@@ -1,4 +1,4 @@
-import 'package:monopoly_flutter/constant/property_constant.dart';
+import 'package:monopoly_flutter/constants/object_constant.dart';
 
 final sixPlayerList = [
   player1,

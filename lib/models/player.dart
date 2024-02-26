@@ -1,11 +1,13 @@
-import 'package:flutter/material.dart';
+import 'package:monopoly_flutter/models/token.dart';
 
-class Player {
+class PlayerModel {
+  int id;
   String name;
-  Color color;
-  
-  Player({
+  TokenModel token;
+
+  PlayerModel({
+    required this.id,
     required this.name,
-    required this.color,
+    required this.token,
   });
 }

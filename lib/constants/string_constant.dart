@@ -1,3 +1,14 @@
+const tax1 = 'Income Tax';
+const tax2 = 'Luxury Tax';
+
+const utility1 = 'Electric Company';
+const utility2 = 'Water Works';
+
+const rial1 = 'Reading Railroad';
+const rial2 = 'Pennsylvania Railroad';
+const rail3 = 'R & O Railroad';
+const rail4 = 'Short Line';
+
 const propertyName1 = 'Mediterranean Avenue';
 const propertyName2 = 'Baltic Avenue';
 const propertyName3 = 'Oriental Avenue';
@@ -20,4 +31,3 @@ const propertyName19 = 'North Carolina Avenue';
 const propertyName20 = 'Pennsylvania Avenue';
 const propertyName21 = 'Park Place';
 const propertyName22 = 'Boardwalk';
-

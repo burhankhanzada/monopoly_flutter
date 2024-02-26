@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:monopoly_flutter/ui/board/peice.dart';
-import 'package:monopoly_flutter/ui/board/peices.dart';
+import 'package:monopoly_flutter/ui/board/grid/boxes/tokens_box.dart';
+import 'package:monopoly_flutter/utils/paint_util.dart';
 import 'package:spaces2/spaces2.dart';
 
 enum BoxPosition { top, left, right, bottom }
 
 class PropertyBox extends StatelessWidget {
-  PropertyBox({
+  const PropertyBox({
     super.key,
     required this.text,
     required this.price,
     required this.color,
     this.houseCount = 0,
     this.isHotel = false,
-    List<Peice>? peiceList,
     required this.position,
-  }) : peiceList = peiceList ?? [];
+    required this.stepNumber,
+  });
 
+  final int price;
   final Color color;
   final String text;
-  final int price;
-  final int houseCount;
   final bool isHotel;
-  final List<Peice> peiceList;
+  final int stepNumber;
+  final int houseCount;
   final BoxPosition position;
 
   @override
@@ -31,28 +31,28 @@ class PropertyBox extends StatelessWidget {
       BoxPosition.top => Column(
           children: [
             namePriceWidget(),
-            divider(),
+            // divider(),
             _colorWidget(),
           ],
         ),
       BoxPosition.bottom => Column(
           children: [
             _colorWidget(),
-            divider(),
+            // divider(),
             namePriceWidget(),
           ],
         ),
       BoxPosition.left => Row(
           children: [
             namePriceWidget(),
-            divider(),
+            // divider(),
             _colorWidget(),
           ],
         ),
       BoxPosition.right => Row(
           children: [
             _colorWidget(),
-            divider(),
+            // divider(),
             namePriceWidget(),
           ],
         ),
@@ -75,9 +75,12 @@ class PropertyBox extends StatelessWidget {
   Widget _colorWidget() {
     return Expanded(
       child: Container(
+        decoration: BoxDecoration(
+          color: color,
+          border: border,
+        ),
         width: double.maxFinite,
         height: double.maxFinite,
-        color: color,
         child: isHotel
             ? const Icon(
                 Icons.apartment,
@@ -113,34 +116,20 @@ class PropertyBox extends StatelessWidget {
     return child;
   }
 
-  Widget divider() {
-    return Container(
-      color: Colors.black,
-      width: _isVertical() ? 2 : null,
-      height: _isHorizontal() ? 2 : null,
-    );
-  }
-
-  Widget nameWidget() {
-    final textWidget = Text(
-      text,
-      textAlign: TextAlign.center,
-    );
-
-    return RotatedBox(
-      quarterTurns: 1,
-      child: textWidget,
-    );
-  }
+  // Widget divider() {
+  //   return Container(
+  //     color: Colors.black,
+  //     width: _isVertical() ? strokeWidth : null,
+  //     height: _isHorizontal() ? strokeWidth : null,
+  //   );
+  // }
 
   Widget namePriceWidget() {
-    Widget child;
-
     final priceWidget = Text(
       '\$$price',
       textAlign: TextAlign.center,
       style: const TextStyle(
-        fontSize: 18,
+        fontSize: 20,
         fontWeight: FontWeight.w900,
       ),
       softWrap: true,
@@ -150,13 +139,11 @@ class PropertyBox extends StatelessWidget {
       text,
       textAlign: TextAlign.center,
       softWrap: true,
-      style: const TextStyle(
-        fontSize: 12,
-      ),
+      style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
     );
 
-    child = SpacedColumn.small(
-      mainAxisSize: MainAxisSize.min,
+    Widget child = SpacedColumn.small(
+      padding: const EdgeInsets.all(4),
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         priceWidget,
@@ -164,20 +151,19 @@ class PropertyBox extends StatelessWidget {
       ],
     );
 
+    child = Container(
+      decoration: BoxDecoration(
+          border: border,
+          color: Colors.white,
+        ),
+      child: child,
+    );
+
     return Expanded(
       flex: 3,
-      child: Stack(
-        fit: StackFit.expand,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(4),
-            child: child,
-          ),
-          Peices(
-            peiceList: peiceList,
-            isVertical: _isVertical(),
-          ),
-        ],
+      child: TokensBox(
+        stepNumber: stepNumber,
+        child: child,
       ),
     );
   }
