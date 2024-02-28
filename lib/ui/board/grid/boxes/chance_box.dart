@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:monopoly_flutter/constants/enum_constant.dart';
+import 'package:monopoly_flutter/constants/string_constant.dart';
+import 'package:monopoly_flutter/models/steps/step_model.dart';
 import 'package:monopoly_flutter/ui/board/grid/boxes/icon_box.dart';
 import 'package:monopoly_flutter/ui/board/grid/boxes/property_box.dart';
 
 class ChanceBox extends StatelessWidget {
   const ChanceBox({
     super.key,
-    required this.stepNumber,
+    required this.step,
     this.position = BoxPosition.bottom,
     this.aligment = BoxAligment.vertical,
   });
 
-  final int stepNumber;
+  final StepModel step;
   final BoxPosition position;
   final BoxAligment aligment;
 
@@ -25,10 +27,10 @@ class ChanceBox extends StatelessWidget {
 
     return IconBox(
       icon: icon,
-      text: 'Chance',
+      text: chance,
       aligment: aligment,
       position: position,
-      stepNumber: stepNumber,
+      step: step,
     );
   }
 }

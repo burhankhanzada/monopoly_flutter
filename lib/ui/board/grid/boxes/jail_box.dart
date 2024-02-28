@@ -1,74 +1,83 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:monopoly_flutter/ui/board/grid/boxes/tokens_box.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:monopoly_flutter/constants/assets_constant.dart';
+import 'package:monopoly_flutter/constants/string_constant.dart';
+import 'package:monopoly_flutter/models/steps/step_model.dart';
+import 'package:monopoly_flutter/models/token_model.dart';
+import 'package:monopoly_flutter/notifiers/game_notifier.dart';
+import 'package:monopoly_flutter/notifiers/tokens_notifer.dart';
+import 'package:monopoly_flutter/ui/token/align_tokens.dart';
+import 'package:monopoly_flutter/ui/token/static_token.dart';
 import 'package:monopoly_flutter/utils/paint_util.dart';
 
-class JailBox extends StatelessWidget {
+class JailBox extends ConsumerStatefulWidget {
   const JailBox({
     super.key,
-    required this.stepNumber,
+    required this.step,
   });
 
-  final int stepNumber;
+  final StepModel step;
+
+  @override
+  ConsumerState<JailBox> createState() => _JailBoxState();
+}
+
+class _JailBoxState extends ConsumerState<JailBox> {
+  late GameNotifier gameNotifier;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        border: border,
-        color: Colors.white,
-      ),
-      child: Column(
-        children: [
-          Expanded(
-            child: Row(
-              children: [
-                const Padding(
-                  padding: EdgeInsets.only(left: 4),
-                  child: RotatedBox(
-                    quarterTurns: -1,
-                    child: Text(
-                      '',
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w900,
-                      ),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: TokensBox(
-                    stepNumber: stepNumber,
-                    child: Container(
-                      color: Colors.black,
-                      padding: const EdgeInsets.all(0),
-                      child: Column(
-                        children: [
-                          const Text(
-                            'In Jail',
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w900,
-                            ),
-                          ),
-                          Image.asset(
-                            'assets/icons/jail.png',
-                            height: 80,
-                            color: Colors.white,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+    final tokensNotifier = ref.watch(tokensNotifierProvider);
+    gameNotifier = ref.watch(gameNotifierProvider);
+
+    final inJailList = <TokenModel>[];
+    final outJailList = <TokenModel>[];
+
+    for (var token in tokensNotifier.tokens) {
+      if (token.currentStep == widget.step.index) {
+        if (!token.isAnimating) {
+          if (token.isInJail) {
+            inJailList.add(token);
+          } else {
+            outJailList.add(token);
+          }
+        }
+      }
+    }
+
+    return Stack(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            border: border,
+            color: Colors.white,
           ),
-          const Padding(
-            padding: EdgeInsets.only(bottom: 4),
+          child: Stack(
+            children: [
+              inJailWidget(inJailList),
+              visiting(outJailList),
+            ],
+          ),
+        ),
+        if (gameNotifier.showDialog &&
+            gameNotifier.currentStep.index != widget.step.index)
+          Container(
+            color: Colors.black54,
+          )
+      ],
+    );
+  }
+
+  Widget visiting(List<TokenModel> outJailList) {
+    return Positioned.fill(
+      child: Stack(
+        children: [
+          const Align(
+            alignment: Alignment.bottomCenter,
             child: Text(
-              'Just Visiting',
+              justVisiting,
               style: TextStyle(
                 fontSize: 20,
                 color: Colors.black,
@@ -76,6 +85,50 @@ class JailBox extends StatelessWidget {
               ),
             ),
           ),
+          AlignTokens(
+            tokenList:
+                outJailList.map((e) => StaticToken(color: e.color)).toList(),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget inJailWidget(List<TokenModel> inJailList) {
+    return Positioned(
+      top: 0,
+      right: 0,
+      left: 30,
+      bottom: 30,
+      child: Stack(
+        children: [
+          Positioned.fill(
+            child: Container(
+              color: Colors.black,
+              padding: const EdgeInsets.all(0),
+              child: Column(
+                children: [
+                  const Text(
+                    inJail,
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                  Image.asset(
+                    jailAsset,
+                    height: 80,
+                    color: Colors.white,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          AlignTokens(
+            tokenList:
+                inJailList.map((e) => StaticToken(color: e.color)).toList(),
+          )
         ],
       ),
     );

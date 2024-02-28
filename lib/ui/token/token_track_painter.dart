@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:monopoly_flutter/ui/token/track_util.dart';
-import 'package:monopoly_flutter/utils/size_offset_util.dart';
 
 class PainterTokenTrack extends StatelessWidget {
   const PainterTokenTrack({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.square(
-      dimension: boardSize,
-      child: CustomPaint(
-        painter: TokenTrackPainter(),
-      ),
+    return CustomPaint(
+      painter: TokenTrackPainter(),
     );
   }
 }

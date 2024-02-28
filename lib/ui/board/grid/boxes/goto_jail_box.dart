@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:monopoly_flutter/constants/assets_constant.dart';
+import 'package:monopoly_flutter/constants/string_constant.dart';
+import 'package:monopoly_flutter/models/steps/step_model.dart';
 import 'package:monopoly_flutter/ui/board/grid/boxes/tokens_box.dart';
 import 'package:monopoly_flutter/utils/paint_util.dart';
 import 'package:spaces2/spaces2.dart';
 
 class GoToJailBox extends StatelessWidget {
-  const GoToJailBox({super.key, required this.stepNumber});
+  const GoToJailBox({super.key, required this.step});
 
-  final int stepNumber;
+  final StepModel step;
 
   @override
   Widget build(BuildContext context) {
     return TokensBox(
-      stepNumber: stepNumber,
+      step: step,
       child: Container(
         decoration: BoxDecoration(
           border: border,
@@ -22,7 +25,7 @@ class GoToJailBox extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
-                'Go To Jail',
+                gotoJail,
                 style: TextStyle(
                   fontSize: 20,
                   color: Colors.white,
@@ -30,7 +33,7 @@ class GoToJailBox extends StatelessWidget {
                 ),
               ),
               Image.asset(
-                'assets/icons/police.png',
+                gotoJailAsset,
                 height: 100,
                 color: Colors.white,
               ),

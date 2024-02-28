@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import 'package:monopoly_flutter/constants/enum_constant.dart';
-import 'package:monopoly_flutter/constants/object_constant.dart';
+import 'package:monopoly_flutter/constants/list_constant.dart';
+import 'package:monopoly_flutter/constants/step_contant.dart';
 import 'package:monopoly_flutter/constants/string_constant.dart';
-import 'package:monopoly_flutter/models/property_group.dart';
+import 'package:monopoly_flutter/models/property_model.dart';
+import 'package:monopoly_flutter/models/steps/step_model.dart';
 import 'package:monopoly_flutter/ui/board/grid/boxes/center_box.dart';
 import 'package:monopoly_flutter/ui/board/grid/boxes/chance_box.dart';
 import 'package:monopoly_flutter/ui/board/grid/boxes/chest_box.dart';
@@ -42,10 +43,8 @@ class _VisualBoardState extends ConsumerState<GridBoard> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.square(
-      dimension: boardSize,
-      child: LayoutGrid(
-        areas: '''
+    return LayoutGrid(
+      areas: '''
               20 21 22 23 24 25 26 27 28 29 30
               19 c c c c c c c c c 31
               18 c c c c c c c c c 32
@@ -58,56 +57,55 @@ class _VisualBoardState extends ConsumerState<GridBoard> {
               11 c c c c c c c c c 39
               10 9 8 7 6 5 4 3 2 1 0
               ''',
-        rowSizes: [
-          cornerSize.px,
-          1.fr,
-          1.fr,
-          1.fr,
-          1.fr,
-          1.fr,
-          1.fr,
-          1.fr,
-          1.fr,
-          1.fr,
-          cornerSize.px
-        ],
-        columnSizes: [
-          cornerSize.px,
-          1.fr,
-          1.fr,
-          1.fr,
-          1.fr,
-          1.fr,
-          1.fr,
-          1.fr,
-          1.fr,
-          1.fr,
-          cornerSize.px
-        ],
-        children: children,
-      ),
+      rowSizes: [
+        cornerSize.px,
+        1.fr,
+        1.fr,
+        1.fr,
+        1.fr,
+        1.fr,
+        1.fr,
+        1.fr,
+        1.fr,
+        1.fr,
+        cornerSize.px
+      ],
+      columnSizes: [
+        cornerSize.px,
+        1.fr,
+        1.fr,
+        1.fr,
+        1.fr,
+        1.fr,
+        1.fr,
+        1.fr,
+        1.fr,
+        1.fr,
+        cornerSize.px
+      ],
+      children: children,
     );
   }
 
   List<NamedAreaGridPlacement> coreners() {
     return [
-      const GoBox(stepNumber: 0).inGridArea('0'),
-      const JailBox(stepNumber: 10).inGridArea('10'),
-      const FreeParkBox(stepNumber: 20).inGridArea('20'),
-      const GoToJailBox(stepNumber: 30).inGridArea('30'),
+      GoBox(step: step0).inGridArea('0'),
+      JailBox(step: step10).inGridArea('10'),
+      FreeParkBox(step: step20).inGridArea('20'),
+      GoToJailBox(step: step30).inGridArea('30'),
     ];
   }
 
   List<NamedAreaGridPlacement> chests() {
     return [
-      const ChestBox(stepNumber: 2).inGridArea('2'),
-      const ChestBox(
-        stepNumber: 17,
+      ChestBox(step: step2).inGridArea('2'),
+      ChestBox(
+        step: step17,
         position: BoxPosition.left,
         aligment: BoxAligment.horizontal,
       ).inGridArea('17'),
-      const ChestBox(
-        stepNumber: 33,
+      ChestBox(
+        step: step33,
         position: BoxPosition.right,
         aligment: BoxAligment.horizontal,
       ).inGridArea('33'),
@@ -116,10 +114,10 @@ class _VisualBoardState extends ConsumerState<GridBoard> {
 
   List<NamedAreaGridPlacement> chances() {
     return [
-      const ChanceBox(stepNumber: 7).inGridArea('7'),
-      const ChanceBox(stepNumber: 22).inGridArea('22'),
-      const ChanceBox(
-        stepNumber: 36,
+      ChanceBox(step: step7).inGridArea('7'),
+      ChanceBox(step: step22).inGridArea('22'),
+      ChanceBox(
+        step: step36,
         position: BoxPosition.right,
         aligment: BoxAligment.horizontal,
       ).inGridArea('36'),
@@ -128,20 +126,20 @@ class _VisualBoardState extends ConsumerState<GridBoard> {
 
   List<NamedAreaGridPlacement> rails() {
     return [
-      const RailBox(stepNumber: 5, text: rial1).inGridArea('5'),
-      const RailBox(
-        text: rial2,
-        stepNumber: 15,
+      RailBox(step: step5, text: railName1).inGridArea('5'),
+      RailBox(
+        text: railName2,
+        step: step15,
         position: BoxPosition.left,
         aligment: BoxAligment.horizontal,
       ).inGridArea('15'),
-      const RailBox(
-        text: rail3,
-        stepNumber: 25,
+      RailBox(
+        text: railName4,
+        step: step25,
       ).inGridArea('25'),
-      const RailBox(
-        text: rail4,
-        stepNumber: 35,
+      RailBox(
+        text: railName4,
+        step: step35,
         position: BoxPosition.right,
         aligment: BoxAligment.horizontal,
       ).inGridArea('35'),
@@ -150,21 +148,21 @@ class _VisualBoardState extends ConsumerState<GridBoard> {
 
   List<NamedAreaGridPlacement> utilities() {
     return [
-      const IconBox(
-        text: utility1,
-        stepNumber: 12,
+      IconBox(
+        text: utilityName1,
+        step: step12,
         position: BoxPosition.left,
         aligment: BoxAligment.horizontal,
-        icon: Icon(
+        icon: const Icon(
           Icons.offline_bolt,
           color: Colors.amber,
           size: 48,
         ),
       ).inGridArea('12'),
-      const IconBox(
-        text: utility2,
-        stepNumber: 28,
-        icon: Icon(
+      IconBox(
+        text: utilityName2,
+        step: step28,
+        icon: const Icon(
           Icons.water_drop,
           color: Colors.blue,
           size: 48,
@@ -175,21 +173,21 @@ class _VisualBoardState extends ConsumerState<GridBoard> {
 
   List<NamedAreaGridPlacement> taxes() {
     return [
-      const IconBox(
-        text: tax1,
-        stepNumber: 4,
-        icon: Icon(
+      IconBox(
+        text: taxName1,
+        step: step4,
+        icon: const Icon(
           Icons.paid,
           color: Colors.green,
           size: 48,
         ),
       ).inGridArea('4'),
-      const IconBox(
-        text: tax2,
-        stepNumber: 38,
+      IconBox(
+        text: taxName2,
+        step: step38,
         position: BoxPosition.right,
         aligment: BoxAligment.horizontal,
-        icon: Icon(
+        icon: const Icon(
           Icons.favorite,
           size: 48,
           color: Colors.pink,
@@ -201,14 +199,14 @@ class _VisualBoardState extends ConsumerState<GridBoard> {
   List<NamedAreaGridPlacement> bottom() {
     return [
       ...propertyGroupBoxesList(
-        stepNumbers: [1, 3],
+        stepModels: [step1, step3],
         position: BoxPosition.bottom,
-        propertyGroup: propertySet1,
+        propertModels: propertyList0,
       ),
       ...propertyGroupBoxesList(
-        stepNumbers: [6, 8, 9],
+        stepModels: [step6, step8, step9],
         position: BoxPosition.bottom,
-        propertyGroup: propertySet2,
+        propertModels: propertyList1,
       ),
     ];
   }
@@ -216,14 +214,14 @@ class _VisualBoardState extends ConsumerState<GridBoard> {
   List<NamedAreaGridPlacement> left() {
     return [
       ...propertyGroupBoxesList(
-        stepNumbers: [11, 13, 14],
+        stepModels: [step11, step13, step14],
         position: BoxPosition.left,
-        propertyGroup: propertySet3,
+        propertModels: propertyList2,
       ),
       ...propertyGroupBoxesList(
-        stepNumbers: [16, 18, 19],
+        stepModels: [step16, step18, step19],
         position: BoxPosition.left,
-        propertyGroup: propertySet4,
+        propertModels: propertyList3,
       ),
     ];
   }
@@ -231,14 +229,14 @@ class _VisualBoardState extends ConsumerState<GridBoard> {
   List<NamedAreaGridPlacement> top() {
     return [
       ...propertyGroupBoxesList(
-        stepNumbers: [21, 23, 24],
+        stepModels: [step21, step23, step24],
         position: BoxPosition.top,
-        propertyGroup: propertySet5,
+        propertModels: propertyList4,
       ),
       ...propertyGroupBoxesList(
-        stepNumbers: [26, 27, 29],
+        stepModels: [step26, step27, step29],
         position: BoxPosition.top,
-        propertyGroup: propertySet6,
+        propertModels: propertyList5,
       ),
     ];
   }
@@ -246,35 +244,35 @@ class _VisualBoardState extends ConsumerState<GridBoard> {
   List<NamedAreaGridPlacement> right() {
     return [
       ...propertyGroupBoxesList(
-        stepNumbers: [31, 32, 34],
+        stepModels: [step31, step32, step34],
         position: BoxPosition.right,
-        propertyGroup: propertySet7,
+        propertModels: propertyList6,
       ),
       ...propertyGroupBoxesList(
-        stepNumbers: [37, 39],
+        stepModels: [step37, step39],
         position: BoxPosition.right,
-        propertyGroup: propertySet8,
+        propertModels: propertyList7,
       ),
     ];
   }
 
   List<NamedAreaGridPlacement> propertyGroupBoxesList({
     required BoxPosition position,
-    required List<int> stepNumbers,
-    required PropertySetModel propertyGroup,
+    required List<StepModel> stepModels,
+    required List<PropertyModel> propertModels,
   }) {
     final list = <NamedAreaGridPlacement>[];
 
-    for (int i = 0; i < stepNumbers.length; i++) {
-      final areaName = stepNumbers[i].toString();
-      final property = propertyGroup.properties[i];
+    for (int i = 0; i < stepModels.length; i++) {
+      final areaName = stepModels[i].index.toString();
+      final property = propertModels[i];
 
       final namedAreaGridPlacement = PropertyBox(
         position: position,
         text: property.name,
         price: property.price,
-        color: propertyGroup.color,
-        stepNumber: stepNumbers[i],
+        color: property.color,
+        step: stepModels[i],
         houseCount: property.houseCount,
       ).inGridArea(areaName);
 

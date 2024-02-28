@@ -31,5 +31,6 @@ final rightBottom = Rect.fromLTWH(
   nonCornerSize / 2,
 );
 
-const diceSize = boardSize / 20;
+// const diceSize = boardSize / 20;
+const double diceSize = 45;
 const diceDotSize = diceSize / 15;

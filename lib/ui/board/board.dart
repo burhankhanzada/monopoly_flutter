@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:monopoly_flutter/ui/board/grid/grid_board.dart';
 import 'package:monopoly_flutter/ui/board/painter/painter_board.dart';
+import 'package:monopoly_flutter/ui/token/token_track_painter.dart';
 
 class Board extends StatelessWidget {
   const Board({super.key});
@@ -13,6 +14,7 @@ class Board extends StatelessWidget {
       children: [
         GridBoard(),
         // PainterBoard(),
+        //  PainterTokenTrack(),
       ],
     );
   }

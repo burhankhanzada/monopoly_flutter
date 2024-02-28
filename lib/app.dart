@@ -8,7 +8,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    final app = MaterialApp(
       home: const Home(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -19,5 +19,14 @@ class App extends StatelessWidget {
         child: child!,
       ),
     );
+
+    return app;
+
+    // return ScreenUtilInit(
+    //   designSize: const Size(1000, 1000),
+    //   builder: (context, child) {
+    //     return app;
+    //   },
+    // );
   }
 }

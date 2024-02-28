@@ -4,6 +4,7 @@ class TokenModel {
   final Color color;
   int currentStep = 0;
   bool isAnimating = false;
+  bool isInJail = false;
   late Animation<Rect?> animation;
   late AnimationController controller;
 

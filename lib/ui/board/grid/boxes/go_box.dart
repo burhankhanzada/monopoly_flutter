@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:monopoly_flutter/constants/string_constant.dart';
+import 'package:monopoly_flutter/models/steps/step_model.dart';
 import 'package:monopoly_flutter/ui/board/grid/boxes/tokens_box.dart';
 import 'package:monopoly_flutter/utils/paint_util.dart';
 
 class GoBox extends StatelessWidget {
   const GoBox({
     super.key,
-    required this.stepNumber,
+    required this.step,
   });
 
-  final int stepNumber;
+  final StepModel step;
 
   @override
   Widget build(BuildContext context) {
     return TokensBox(
-      stepNumber: stepNumber,
+      step: step,
       child: Container(
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
@@ -24,7 +26,7 @@ class GoBox extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              'Collect \$200 Salary as You Pass',
+              collect,
               style: TextStyle(
                   fontSize: 16,
                   color: Colors.white,
@@ -40,7 +42,7 @@ class GoBox extends StatelessWidget {
                   color: Colors.white,
                 ),
                 Text(
-                  'GO',
+                  go,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 50,

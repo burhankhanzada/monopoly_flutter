@@ -13,9 +13,17 @@ class DiceNotifier extends ChangeNotifier {
 
   late int _output;
   int get output => _output;
+  set output(int value) {
+    _output = value;
+    notifyListeners();
+  }
 
-  // bool _isRolled = false;
-  // bool get isRolled => _isRolled;
+  bool _isRolled = false;
+  bool get isRolled => _isRolled;
+  set isRolled(bool value) {
+    _isRolled = value;
+    notifyListeners();
+  }
 
   int _dice1Number = 1;
   int get dice1Number => _dice1Number;
@@ -24,10 +32,11 @@ class DiceNotifier extends ChangeNotifier {
   int get dice2Number => _dice2Number;
 
   void rollDice() async {
+    _isRolled = false;
     await _generateFakeRandomAnimation();
     _generateOutput();
     ref.read(tokensNotifierProvider).move();
-    // _isRolled = true;
+    _isRolled = true;
   }
 
   int _generateOutput() {

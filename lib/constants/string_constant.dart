@@ -1,13 +1,24 @@
-const tax1 = 'Income Tax';
-const tax2 = 'Luxury Tax';
+const go = 'Go';
+const collect = 'Collect \$200 Salary as You Pass';
 
-const utility1 = 'Electric Company';
-const utility2 = 'Water Works';
+const inJail = 'In Jail';
+const justVisiting = 'Just Visiting';
+const park = 'Free Parking';
+const gotoJail = 'Go To Jail';
 
-const rial1 = 'Reading Railroad';
-const rial2 = 'Pennsylvania Railroad';
-const rail3 = 'R & O Railroad';
-const rail4 = 'Short Line';
+const chest = 'Community Chest';
+const chance = 'Chance';
+
+const taxName1 = 'Income Tax';
+const taxName2 = 'Luxury Tax';
+
+const utilityName1 = 'Electric Company';
+const utilityName2 = 'Water Works';
+
+const railName1 = 'Reading Railroad';
+const railName2 = 'Pennsylvania Railroad';
+const railName3 = 'R & O Railroad';
+const railName4 = 'Short Line';
 
 const propertyName1 = 'Mediterranean Avenue';
 const propertyName2 = 'Baltic Avenue';
@@ -31,3 +42,5 @@ const propertyName19 = 'North Carolina Avenue';
 const propertyName20 = 'Pennsylvania Avenue';
 const propertyName21 = 'Park Place';
 const propertyName22 = 'Boardwalk';
+
+const utlityMessage = 'If ONE Utility is owned, rent is 4 times the number on the dice which landed the player on the utility, but if BOTH Utilities are owned, rent is 10 times the amount shown on the dice.';

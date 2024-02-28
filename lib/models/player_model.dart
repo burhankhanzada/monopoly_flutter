@@ -1,4 +1,4 @@
-import 'package:monopoly_flutter/models/token.dart';
+import 'package:monopoly_flutter/models/token_model.dart';
 
 class PlayerModel {
   int id;

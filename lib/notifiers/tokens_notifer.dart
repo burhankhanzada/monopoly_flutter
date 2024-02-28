@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:monopoly_flutter/constants/int_constans.dart';
-import 'package:monopoly_flutter/models/token.dart';
+import 'package:monopoly_flutter/constants/int_constan.dart';
+import 'package:monopoly_flutter/models/token_model.dart';
 import 'package:monopoly_flutter/ui/dice/dice_notifier.dart';
 import 'package:monopoly_flutter/notifiers/game_notifier.dart';
 import 'package:monopoly_flutter/ui/token/track_util.dart';
@@ -85,7 +85,9 @@ class TokensNotifier extends ChangeNotifier {
       stepCounter = 0;
       token.isAnimating = false;
       notifyListeners();
-      gameNotifier.chnageTurn();
+      // gameNotifier.chnageTurn();
+
+      gameNotifier.onStep();
     }
   }
 }
