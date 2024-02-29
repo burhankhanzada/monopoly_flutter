@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:monopoly_flutter/ui/board/grid/boxes/property_box.dart';
+import 'package:monopoly_flutter/constants/enum_constant.dart';
 import 'package:monopoly_flutter/ui/token/static_token.dart';
 
 class AlignTokens extends StatelessWidget {
   const AlignTokens({
     super.key,
-    this.isVertical = false,
     required this.tokenList,
     this.position = BoxPosition.bottom,
   });
 
-  final bool isVertical;
   final BoxPosition position;
   final List<StaticToken> tokenList;
 
@@ -18,7 +16,7 @@ class AlignTokens extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget child;
 
-    if (isVertical || tokenList.length < 4) {
+    if (tokenList.length < 4) {
 
       const paddingSize = 40.0;
       var padding = EdgeInsets.zero;

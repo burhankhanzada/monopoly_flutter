@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:monopoly_flutter/constants/string_constant.dart';
 import 'package:monopoly_flutter/models/steps/step_model.dart';
-import 'package:monopoly_flutter/ui/board/grid/boxes/tokens_box.dart';
+import 'package:monopoly_flutter/ui/board/boxes/tokens_box.dart';
 import 'package:monopoly_flutter/utils/paint_util.dart';
 
 class GoBox extends StatelessWidget {

@@ -61,7 +61,7 @@ class _JailBoxState extends ConsumerState<JailBox> {
             ],
           ),
         ),
-        if (gameNotifier.showDialog &&
+        if (gameNotifier.isShowDialog &&
             gameNotifier.currentStep.index != widget.step.index)
           Container(
             color: Colors.black54,

@@ -1,13 +1,12 @@
-import 'package:monopoly_flutter/models/steps/step_model.dart';
+import 'package:monopoly_flutter/models/steps/icon_step_model.dart';
 
-class TaxStepModel extends StepModel {
-
-  final bool isIncome;
-  final bool isLuxury;
-
+class TaxStepModel extends TextIconStepModel {
   TaxStepModel({
+    required super.rect,
+    required super.name,
+    required super.icon,
+    required super.color,
     required super.index,
-    this.isIncome = false,
-    this.isLuxury = false,
+    required super.position,
   });
 }

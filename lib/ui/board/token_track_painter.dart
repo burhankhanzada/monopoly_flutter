@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:monopoly_flutter/ui/token/track_util.dart';
+import 'package:monopoly_flutter/utils/track_util.dart';
 
 class PainterTokenTrack extends StatelessWidget {
   const PainterTokenTrack({super.key});

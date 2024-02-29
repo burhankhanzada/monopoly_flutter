@@ -1,32 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:monopoly_flutter/models/steps/step_model.dart';
+import 'package:monopoly_flutter/constants/enum_constant.dart';
+import 'package:monopoly_flutter/models/property_model.dart';
+import 'package:monopoly_flutter/models/steps/property_step_model.dart';
 import 'package:monopoly_flutter/notifiers/game_notifier.dart';
-import 'package:monopoly_flutter/ui/board/grid/boxes/tokens_box.dart';
+import 'package:monopoly_flutter/ui/board/boxes/tokens_box.dart';
 import 'package:monopoly_flutter/utils/paint_util.dart';
 import 'package:spaces2/spaces2.dart';
-
-enum BoxPosition { top, left, right, bottom }
 
 class PropertyBox extends ConsumerStatefulWidget {
   const PropertyBox({
     super.key,
-    required this.text,
-    required this.price,
-    required this.color,
-    this.houseCount = 0,
-    this.isHotel = false,
-    required this.position,
     required this.step,
+    required this.position,
   });
 
-  final int price;
-  final Color color;
-  final String text;
-  final bool isHotel;
-  final StepModel step;
-  final int houseCount;
   final BoxPosition position;
+  final PropertyStepModel step;
 
   @override
   ConsumerState<PropertyBox> createState() => _PropertyBoxState();
@@ -34,6 +24,8 @@ class PropertyBox extends ConsumerStatefulWidget {
 
 class _PropertyBoxState extends ConsumerState<PropertyBox> {
   late GameNotifier gameNotifier;
+
+  late PropertyModel propertyModel = widget.step.property;
 
   @override
   Widget build(BuildContext context) {
@@ -72,30 +64,25 @@ class _PropertyBoxState extends ConsumerState<PropertyBox> {
     );
   }
 
-  bool _isVertical() {
-    return widget.position == BoxPosition.left ||
-        widget.position == BoxPosition.right;
-  }
-
   Widget _colorWidget() {
     return Expanded(
       child: Stack(
         children: [
           Container(
             decoration: BoxDecoration(
-              color: widget.color,
+              color: propertyModel.color,
               border: border,
             ),
             width: double.maxFinite,
             height: double.maxFinite,
-            child: widget.isHotel
+            child: propertyModel.houseCount > 4
                 ? const Icon(
                     Icons.apartment,
                     color: Colors.white,
                   )
                 : houseWidget(),
           ),
-          if (gameNotifier.showDialog &&
+          if (gameNotifier.isShowDialog &&
               gameNotifier.currentStep.index != widget.step.index)
             Container(
               color: Colors.black54,
@@ -107,7 +94,7 @@ class _PropertyBoxState extends ConsumerState<PropertyBox> {
 
   Widget houseWidget() {
     final housesList = List.generate(
-      widget.houseCount,
+      propertyModel.houseCount,
       (index) => const Icon(
         Icons.home,
         size: 16,
@@ -120,7 +107,8 @@ class _PropertyBoxState extends ConsumerState<PropertyBox> {
       children: housesList,
     );
 
-    if (_isVertical()) {
+    if (widget.position == BoxPosition.left ||
+        widget.position == BoxPosition.right) {
       child = Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: housesList,
@@ -132,7 +120,7 @@ class _PropertyBoxState extends ConsumerState<PropertyBox> {
 
   Widget namePriceWidget() {
     final priceWidget = Text(
-      '\$${widget.price}',
+      '\$${propertyModel.price}',
       textAlign: TextAlign.center,
       style: const TextStyle(
         fontSize: 20,
@@ -142,7 +130,7 @@ class _PropertyBoxState extends ConsumerState<PropertyBox> {
     );
 
     final nameWidget = Text(
-      widget.text,
+      propertyModel.name,
       textAlign: TextAlign.center,
       softWrap: true,
       style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),

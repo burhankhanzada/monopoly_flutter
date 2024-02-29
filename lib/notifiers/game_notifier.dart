@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:monopoly_flutter/constants/list_constant.dart';
 import 'package:monopoly_flutter/models/player_model.dart';
+import 'package:monopoly_flutter/models/steps/property_step_model.dart';
 import 'package:monopoly_flutter/models/steps/step_model.dart';
 import 'package:monopoly_flutter/models/token_model.dart';
 import 'package:monopoly_flutter/notifiers/tokens_notifer.dart';
@@ -16,18 +17,10 @@ class GameNotifier extends ChangeNotifier {
 
   late BuildContext context;
 
-  init(BuildContext context) {
-    this.context = context;
-  }
+  bool _isShowDialog = false;
+  bool get isShowDialog => _isShowDialog;
 
-  bool _showDialog = false;
-
-  bool get showDialog => _showDialog;
-
-  set showDialog(bool value) {
-    _showDialog = value;
-    notifyListeners();
-  }
+  bool isDialogDismissable = false;
 
   late final tokensNotifier = ref.read(tokensNotifierProvider);
 
@@ -35,13 +28,22 @@ class GameNotifier extends ChangeNotifier {
 
   List<PlayerModel> players = sixPlayerList;
 
+  PlayerModel get currentPLayer => players[currentPlayerIndex];
+
   List<TokenModel> get tokens => tokensNotifier.tokens;
 
   int get _currentStepIndex => tokensNotifier.token.currentStep;
-  StepModel get currentStep => stepList[_currentStepIndex];
+  late StepModel currentStep;
+
+  bool showBroughtDialog = false;
+
+  init(BuildContext context) {
+    this.context = context;
+  }
 
   void changeTurn() {
-    _showDialog = false;
+    _isShowDialog = false;
+    showBroughtDialog = false;
     ref.read(diceNotifierProvider).isRolled = false;
     currentPlayerIndex++;
     currentPlayerIndex %= tokens.length;
@@ -49,7 +51,37 @@ class GameNotifier extends ChangeNotifier {
   }
 
   void onStep() {
-    _showDialog = true;
+    currentStep = stepList[_currentStepIndex];
+    showDialog();
+  }
+
+  void buy(PropertyStepModel buyableStepModel) {
+    (stepList[buyableStepModel.index] as PropertyStepModel).ownedBy =
+        currentPLayer;
+    currentPLayer.properties.add(buyableStepModel.property);
+    players[currentPlayerIndex].money =
+        players[currentPlayerIndex].money - buyableStepModel.property.price;
+    showBroughtDialog = true;
+    notifyListeners();
+  }
+
+  void showDialog() {
+    _isShowDialog = true;
+    isDialogDismissable = false;
+    notifyListeners();
+  }
+
+  void hideDialog() {
+    if (isDialogDismissable) {
+      _isShowDialog = false;
+      notifyListeners();
+    }
+  }
+
+  void onTapStep(StepModel stepModel) {
+    _isShowDialog = true;
+    isDialogDismissable = true;
+    currentStep = stepModel;
     notifyListeners();
   }
 }

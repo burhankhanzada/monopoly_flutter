@@ -1,9 +1,9 @@
 // ignore_for_file: unused_import
 
 import 'package:flutter/material.dart';
-import 'package:monopoly_flutter/ui/board/grid/grid_board.dart';
-import 'package:monopoly_flutter/ui/board/painter/painter_board.dart';
-import 'package:monopoly_flutter/ui/token/token_track_painter.dart';
+import 'package:monopoly_flutter/ui/board/step_owened_indicator_painter.dart';
+import 'package:monopoly_flutter/ui/board/steps.dart';
+import 'package:monopoly_flutter/ui/board/token_track_painter.dart';
 
 class Board extends StatelessWidget {
   const Board({super.key});
@@ -12,9 +12,9 @@ class Board extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Stack(
       children: [
-        GridBoard(),
-        // PainterBoard(),
-        //  PainterTokenTrack(),
+        Steps(),
+        PainterStepOwnedIndicator()
+        // PainterTokenTrack(),
       ],
     );
   }

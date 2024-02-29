@@ -4,7 +4,7 @@ import 'package:monopoly_flutter/constants/int_constan.dart';
 import 'package:monopoly_flutter/models/token_model.dart';
 import 'package:monopoly_flutter/ui/dice/dice_notifier.dart';
 import 'package:monopoly_flutter/notifiers/game_notifier.dart';
-import 'package:monopoly_flutter/ui/token/track_util.dart';
+import 'package:monopoly_flutter/utils/track_util.dart';
 
 final tokensNotifierProvider = ChangeNotifierProvider(TokensNotifier.new);
 

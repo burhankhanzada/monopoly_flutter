@@ -31,8 +31,23 @@ class Player extends StatelessWidget {
             height: 40,
           ),
           Expanded(
-            child: Text(
-              playerModel.name,
+            child: SpacedColumn.small(
+              children: [
+                Text(
+                  playerModel.name,
+                  style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  '\$${playerModel.money}',
+                  style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
             ),
           ),
         ],

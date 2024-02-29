@@ -1,70 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:monopoly_flutter/models/steps/buyable_step_model.dart';
 import 'package:monopoly_flutter/models/property_model.dart';
-import 'package:monopoly_flutter/ui/components/custom_button.dart';
 import 'package:spaces2/spaces2.dart';
 
-class PropertyDailog extends StatelessWidget {
-  const PropertyDailog({super.key, required this.buyableStepModel});
+class PropertyCard extends StatelessWidget {
+  const PropertyCard({super.key, required this.propertyModel});
 
-  final BuyableStepModel buyableStepModel;
+  final PropertyModel propertyModel;
 
   @override
   Widget build(BuildContext context) {
-    final propertyModel = buyableStepModel.propertyModel!;
-
-    return SpacedColumn(
-      padding: const EdgeInsets.all(16),
-      children: [
-        const Text(
-          'For Sale',
-          style: TextStyle(
-            fontSize: 50,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        Expanded(
-          child: SpacedRow.big(
-            children: [
-              Expanded(
-                child: _buildPropertyCard(propertyModel),
-              ),
-              SizedBox(
-                width: 200,
-                child: SpacedColumn.big(
-                  
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'For \$${propertyModel.price}',
-                      style: const TextStyle(
-                        fontSize: 40,
-                        color: Colors.green,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const CustomButton(
-                      color: Colors.green,
-                      text: 'Buy',
-                      fontSize: 40,
-                    ),
-                    const CustomButton(
-                      color: Colors.red,
-                      text: 'Auction',
-                      fontSize: 40,
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildPropertyCard(PropertyModel propertyModel) {
     return Container(
       color: propertyModel.color,
       child: SpacedColumn(

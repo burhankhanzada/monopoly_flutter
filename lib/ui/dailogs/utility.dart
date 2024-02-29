@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:monopoly_flutter/constants/string_constant.dart';
-import 'package:monopoly_flutter/models/steps/buyable_step_model.dart';
-import 'package:monopoly_flutter/models/utility_model.dart';
+import 'package:monopoly_flutter/models/steps/utility_step_model.dart';
 import 'package:monopoly_flutter/ui/components/custom_button.dart';
 import 'package:spaces2/spaces2.dart';
 
 class UtilityDailog extends StatelessWidget {
-  const UtilityDailog({super.key, required this.buyableStepModel});
+  const UtilityDailog({super.key, required this.utilityStepModel});
 
-  final BuyableStepModel buyableStepModel;
+  final UtilityStepModel utilityStepModel;
 
   @override
   Widget build(BuildContext context) {
-    final utilityModel = buyableStepModel.utilityModel!;
+    final utilityModel = utilityStepModel;
 
     return SpacedColumn(
       padding: const EdgeInsets.all(16),
@@ -28,7 +27,7 @@ class UtilityDailog extends StatelessWidget {
           child: SpacedRow.big(
             children: [
               Expanded(
-                child: _buildUtilityCard(utilityModel),
+                child: _buildUtilityCard(),
               ),
               SizedBox(
                 width: 200,
@@ -63,19 +62,15 @@ class UtilityDailog extends StatelessWidget {
     );
   }
 
-  Widget _buildUtilityCard(UtilityModel utilityModel) {
-
-    final color = utilityModel.isElectricity ? Colors.amber : Colors.blue;
-    final icon = utilityModel.isElectricity ? Icons.offline_bolt : Icons.water_drop;
-
+  Widget _buildUtilityCard() {
     return Container(
-      color: utilityModel.isElectricity ? Colors.amber : Colors.blue,
+      color: utilityStepModel.color,
       child: SpacedColumn(
         children: [
           Padding(
             padding: const EdgeInsets.only(top: 8),
             child: Text(
-              utilityModel.name,
+              utilityStepModel.name,
               style: const TextStyle(
                 fontSize: 35,
                 color: Colors.white,
@@ -93,15 +88,14 @@ class UtilityDailog extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(
-                    icon,
+                    utilityStepModel.icon,
                     size: 125,
-                    color: color,
+                    color: utilityStepModel.color,
                   ),
                   const Text(
                     utlityMessage,
                     style: TextStyle(
                       fontSize: 30,
-                      
                       fontWeight: FontWeight.bold,
                     ),
                   ),

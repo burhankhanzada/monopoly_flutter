@@ -2,15 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:monopoly_flutter/constants/assets_constant.dart';
 import 'package:monopoly_flutter/constants/string_constant.dart';
 import 'package:monopoly_flutter/models/steps/step_model.dart';
-import 'package:monopoly_flutter/ui/board/grid/boxes/tokens_box.dart';
+import 'package:monopoly_flutter/ui/board/boxes/tokens_box.dart';
 import 'package:monopoly_flutter/utils/paint_util.dart';
 import 'package:spaces2/spaces2.dart';
 
-class FreeParkBox extends StatelessWidget {
-  const FreeParkBox({
-    super.key,
-    required this.step,
-  });
+class GoToJailBox extends StatelessWidget {
+  const GoToJailBox({super.key, required this.step});
 
   final StepModel step;
 
@@ -21,14 +18,14 @@ class FreeParkBox extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           border: border,
-          color: Colors.green,
+          color: Colors.blue,
         ),
         child: Center(
           child: SpacedColumn(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
-                park,
+                gotoJail,
                 style: TextStyle(
                   fontSize: 20,
                   color: Colors.white,
@@ -36,7 +33,7 @@ class FreeParkBox extends StatelessWidget {
                 ),
               ),
               Image.asset(
-                parkAsset,
+                gotoJailAsset,
                 height: 100,
                 color: Colors.white,
               ),

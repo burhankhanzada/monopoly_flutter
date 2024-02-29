@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:monopoly_flutter/models/rail_model.dart';
-import 'package:monopoly_flutter/models/steps/buyable_step_model.dart';
+import 'package:monopoly_flutter/models/steps/rail_step_model.dart';
 import 'package:monopoly_flutter/ui/components/custom_button.dart';
 import 'package:spaces2/spaces2.dart';
 
 class RailDailog extends StatelessWidget {
-  const RailDailog({super.key, required this.buyableStepModel});
+  const RailDailog({super.key, required this.railStepModel});
 
-  final BuyableStepModel buyableStepModel;
+  final RailStepModel railStepModel;
 
   @override
   Widget build(BuildContext context) {
-    final railModel = buyableStepModel.railModel!;
+    final railModel = railStepModel;
 
     return SpacedColumn(
       padding: const EdgeInsets.all(16),
@@ -62,7 +61,7 @@ class RailDailog extends StatelessWidget {
     );
   }
 
-  Widget _buildRialCard(RailModel rialModel) {
+  Widget _buildRialCard(RailStepModel rialModel) {
     return Container(
       color: Colors.teal,
       child: SpacedColumn(

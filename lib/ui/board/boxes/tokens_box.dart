@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:monopoly_flutter/constants/enum_constant.dart';
 import 'package:monopoly_flutter/models/steps/step_model.dart';
 import 'package:monopoly_flutter/models/token_model.dart';
 import 'package:monopoly_flutter/notifiers/game_notifier.dart';
 import 'package:monopoly_flutter/notifiers/tokens_notifer.dart';
-import 'package:monopoly_flutter/ui/board/grid/boxes/property_box.dart';
 import 'package:monopoly_flutter/ui/token/align_tokens.dart';
 import 'package:monopoly_flutter/ui/token/static_token.dart';
 
@@ -38,16 +38,19 @@ class TokensBox extends ConsumerWidget {
     }
     if (!showTokens) return child;
 
-    return Stack(
-      fit: StackFit.expand,
-      children: [
-        child,
-        AlignTokens(
-          position: position,
-          tokenList: tokens.map((e) => StaticToken(color: e.color)).toList(),
-        ),
-        if (gameNotifier.showDialog && gameNotifier.currentStep.index != step.index) Container(color: Colors.black54,)
-      ],
+    return GestureDetector(
+      onTap: () => gameNotifier.onTapStep(step),
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          child,
+          AlignTokens(
+            position: position,
+            tokenList: tokens.map((e) => StaticToken(color: e.color)).toList(),
+          ),
+          if (gameNotifier.isShowDialog && gameNotifier.currentStep.index != step.index) Container(color: Colors.black54,)
+        ],
+      ),
     );
   }
 }

@@ -56,8 +56,8 @@ final property3 = PropertyModel(
   rentHotel: 550,
   rentOneHouse: 30,
   rentTwoHouse: 90,
-  rentThreeHouse: 270,
   rentFourHouse: 400,
+  rentThreeHouse: 270,
   name: propertyName4,
   color: propertySetColor1,
 );
@@ -108,7 +108,7 @@ final property6 = PropertyModel(
 );
 
 final property7 = PropertyModel(
-  rent: 1,
+  rent: 12,
   price: 160,
   rentSet: 24,
   mortgage: 80,
@@ -320,14 +320,14 @@ final property20 = PropertyModel(
 final property21 = PropertyModel(
   rent: 50,
   price: 400,
+  rentSet: 100,
   mortgage: 200,
   hosueCost: 200,
-  rentSet: 100,
+  rentHotel: 2000,
   rentOneHouse: 200,
   rentTwoHouse: 600,
-  rentThreeHouse: 1400,
   rentFourHouse: 1700,
-  rentHotel: 2000,
+  rentThreeHouse: 1400,
   name: propertyName22,
   color: propertySetColor7,
 );

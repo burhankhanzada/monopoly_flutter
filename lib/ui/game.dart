@@ -19,7 +19,7 @@ class Game extends ConsumerStatefulWidget {
 }
 
 class _GameState extends ConsumerState<Game> {
-  late final gameNotifier = ref.read(gameNotifierProvider);
+  late GameNotifier gameNotifier = ref.read(gameNotifierProvider);
 
   late final players = gameNotifier.players;
 
@@ -31,11 +31,13 @@ class _GameState extends ConsumerState<Game> {
   @override
   void initState() {
     super.initState();
+    gameNotifier = ref.read(gameNotifierProvider);
     gameNotifier.init(context);
   }
 
   @override
   Widget build(BuildContext context) {
+    gameNotifier = ref.watch(gameNotifierProvider);
     return SafeArea(
       child: SingleChildScrollView(
         child: SpacedColumn(
@@ -52,7 +54,9 @@ class _GameState extends ConsumerState<Game> {
                         AnimatedToken(),
                       ],
                     ),
-                    Positioned.fill(child: StepDailog()),
+                    Positioned.fill(
+                      child: StepDailog(),
+                    ),
                   ],
                 ),
               ),

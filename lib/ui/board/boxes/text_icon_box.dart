@@ -1,34 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:monopoly_flutter/constants/enum_constant.dart';
-import 'package:monopoly_flutter/models/steps/step_model.dart';
-import 'package:monopoly_flutter/ui/board/grid/boxes/tokens_box.dart';
-import 'package:monopoly_flutter/ui/board/grid/boxes/property_box.dart';
+import 'package:monopoly_flutter/models/steps/icon_step_model.dart';
+import 'package:monopoly_flutter/ui/board/boxes/tokens_box.dart';
 import 'package:monopoly_flutter/utils/paint_util.dart';
 import 'package:spaces2/spaces2.dart';
 
-class IconBox extends StatelessWidget {
-  const IconBox({
+class TextIconBox extends StatelessWidget {
+  const TextIconBox({
     super.key,
-    required this.text,
-    required this.icon,
     required this.step,
-    this.position = BoxPosition.bottom,
-    this.aligment = BoxAligment.vertical,
+    required this.position,
   });
 
-  final String text;
-  final Widget icon;
-  final StepModel step;
-  final BoxAligment aligment;
   final BoxPosition position;
+  final TextIconStepModel step;
 
   @override
   Widget build(BuildContext context) {
     final textWidget = Text(
-      text,
+      step.name,
       softWrap: true,
       style: const TextStyle(fontWeight: FontWeight.w900),
       textAlign: TextAlign.center,
+    );
+
+    final icon = Icon(
+      step.icon,
+      size: 48,
+      color: step.color,
     );
 
     Widget child = SpacedColumn(
@@ -40,7 +39,7 @@ class IconBox extends StatelessWidget {
       ],
     );
 
-    if (aligment == BoxAligment.horizontal) {
+    if (position == BoxPosition.left || position == BoxPosition.right) {
       child = SpacedRow(
         padding: const EdgeInsets.symmetric(horizontal: 4),
         mainAxisAlignment: MainAxisAlignment.center,
@@ -63,7 +62,7 @@ class IconBox extends StatelessWidget {
 
     return TokensBox(
       step: step,
-      position: position,
+      position: BoxPosition.bottom,
       child: child,
     );
   }

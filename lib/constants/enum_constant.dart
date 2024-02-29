@@ -1,1 +1,1 @@
-enum BoxAligment { vertical, horizontal }
+enum BoxPosition { top, left, right, bottom }
