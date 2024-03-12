@@ -14,9 +14,8 @@ class Player extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(),
         borderRadius: BorderRadius.circular(8),
-        color: playerModel.token.color.withOpacity(0.25),
+        color: playerModel.token.color.withOpacity(0.20),
       ),
       child: SpacedRow(
         padding: const EdgeInsets.all(8),
@@ -24,7 +23,6 @@ class Player extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              border: Border.all(),
               color: playerModel.token.color,
             ),
             width: 40,

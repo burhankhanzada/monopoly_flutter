@@ -20,7 +20,7 @@ class Steps extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      children: _buidlStepWidgets().animate(interval: 0.2.seconds).scale(),
+      children: _buidlStepWidgets().animate(interval: 0.1.seconds).scale(),
     );
   }
 

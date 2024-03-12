@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:monopoly_flutter/constants/enum_constant.dart';
 import 'package:monopoly_flutter/models/steps/step_model.dart';
 import 'package:monopoly_flutter/models/token_model.dart';
 import 'package:monopoly_flutter/notifiers/game_notifier.dart';
@@ -13,14 +12,14 @@ class TokensBox extends ConsumerWidget {
     super.key,
     required this.step,
     required this.child,
+    required this.isCorner,
     this.showTokens = true,
-    this.position = BoxPosition.bottom,
   });
 
   final Widget child;
+  final bool isCorner;
   final StepModel step;
   final bool showTokens;
-  final BoxPosition position;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -41,14 +40,19 @@ class TokensBox extends ConsumerWidget {
     return GestureDetector(
       onTap: () => gameNotifier.onTapStep(step),
       child: Stack(
-        fit: StackFit.expand,
+        alignment: Alignment.center,
         children: [
           child,
           AlignTokens(
-            position: position,
+            isCorner: isCorner,
+            position: step.position,
             tokenList: tokens.map((e) => StaticToken(color: e.color)).toList(),
           ),
-          if (gameNotifier.isShowDialog && gameNotifier.currentStep.index != step.index) Container(color: Colors.black54,)
+          if (gameNotifier.isShowDialog &&
+              gameNotifier.currentStep.index != step.index)
+            Positioned.fill(
+              child: Container(color: Colors.black54),
+            )
         ],
       ),
     );

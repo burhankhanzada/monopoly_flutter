@@ -1,5 +1,13 @@
-import 'package:monopoly_flutter/constants/tokens_constant.dart';
+import 'package:monopoly_flutter/constants/color_constant.dart';
 import 'package:monopoly_flutter/models/player_model.dart';
+import 'package:monopoly_flutter/models/token_model.dart';
+
+final token1 = TokenModel(tokenColor0);
+final token2 = TokenModel(tokenColor1);
+final token3 = TokenModel(tokenColor2);
+final token4 = TokenModel(tokenColor3);
+final token5 = TokenModel(tokenColor4);
+final token6 = TokenModel(tokenColor5);
 
 final player0 = PlayerModel(id: 0, name: 'Player 1', token: token1);
 final player1 = PlayerModel(id: 1, name: 'Player 2', token: token2);

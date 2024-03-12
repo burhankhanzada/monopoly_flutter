@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:monopoly_flutter/models/property_model.dart';
+import 'package:monopoly_flutter/utils/style_util.dart';
 import 'package:spaces2/spaces2.dart';
 
 class PropertyCard extends StatelessWidget {
@@ -10,26 +11,33 @@ class PropertyCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: propertyModel.color,
+      decoration: BoxDecoration(
+        color: propertyModel.color,
+        borderRadius: dailogBorderRadius2,
+        border: Border.all(
+          width: 10,
+          color: propertyModel.color,
+          style: BorderStyle.solid,
+        ),
+      ),
       child: SpacedColumn(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 8),
-            child: Text(
-              propertyModel.name,
-              style: const TextStyle(
-                fontSize: 35,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
+          Text(
+            propertyModel.name,
+            style: TextStyle(
+              fontSize: 35,
+              color: propertyModel.color == Colors.yellow ? Colors.black : Colors.white,
+              fontWeight: FontWeight.bold,
             ),
           ),
           Expanded(
             child: Container(
-              margin: const EdgeInsets.all(8),
-              padding: const EdgeInsets.all(16),
+              padding: dailogInnerrPadding,
               width: double.maxFinite,
-              color: Colors.white,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: dailogBorderRadius3,
+              ),
               child: SpacedColumn(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -55,7 +63,7 @@ class PropertyCard extends StatelessWidget {
                   Text(
                     'Mortage \$${propertyModel.mortgage}',
                     style: const TextStyle(
-                      fontSize: 35,
+                      fontSize: 30,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -74,7 +82,7 @@ class PropertyCard extends StatelessWidget {
         homeCount,
         (index) => const Icon(
           Icons.home,
-          size: 50,
+          size: 40,
           color: Colors.green,
         ),
       ),
@@ -83,7 +91,7 @@ class PropertyCard extends StatelessWidget {
     if (homeCount > 4) {
       icons = const Icon(
         Icons.apartment,
-        size: 50,
+        size: 40,
         color: Colors.red,
       );
     }
@@ -100,7 +108,7 @@ class PropertyCard extends StatelessWidget {
         Text(
           '\$$rent',
           style: const TextStyle(
-            fontSize: 35,
+            fontSize: 30,
             fontWeight: FontWeight.bold,
           ),
         )

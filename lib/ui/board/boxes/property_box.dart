@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:monopoly_flutter/constants/enum_constant.dart';
+import 'package:monopoly_flutter/utils/style_util.dart';
 import 'package:monopoly_flutter/models/property_model.dart';
 import 'package:monopoly_flutter/models/steps/property_step_model.dart';
 import 'package:monopoly_flutter/notifiers/game_notifier.dart';
 import 'package:monopoly_flutter/ui/board/boxes/tokens_box.dart';
-import 'package:monopoly_flutter/utils/paint_util.dart';
-import 'package:spaces2/spaces2.dart';
 
 class PropertyBox extends ConsumerStatefulWidget {
   const PropertyBox({
@@ -31,35 +30,41 @@ class _PropertyBoxState extends ConsumerState<PropertyBox> {
   Widget build(BuildContext context) {
     gameNotifier = ref.watch(gameNotifierProvider);
 
-    final child = switch (widget.position) {
-      BoxPosition.top => Column(
-          children: [
-            namePriceWidget(),
-            _colorWidget(),
-          ],
-        ),
-      BoxPosition.bottom => Column(
-          children: [
-            _colorWidget(),
-            namePriceWidget(),
-          ],
-        ),
-      BoxPosition.left => Row(
-          children: [
-            namePriceWidget(),
-            _colorWidget(),
-          ],
-        ),
-      BoxPosition.right => Row(
-          children: [
-            _colorWidget(),
-            namePriceWidget(),
-          ],
-        ),
-    };
+    late Widget child;
 
-    return Container(
-      color: Colors.white,
+    if (widget.position == BoxPosition.top) {
+      child = Column(
+        children: [
+          namePriceWidget(),
+          _colorWidget(),
+        ],
+      );
+    } else if (widget.position == BoxPosition.left) {
+      child = Row(
+        children: [
+          namePriceWidget(),
+          _colorWidget(),
+        ],
+      );
+    } else if (widget.position == BoxPosition.right) {
+      child = Row(
+        children: [
+          _colorWidget(),
+          namePriceWidget(),
+        ],
+      );
+    } else if (widget.position == BoxPosition.bottom) {
+      child = Column(
+        children: [
+          _colorWidget(),
+          namePriceWidget(),
+        ],
+      );
+    }
+
+    return TokensBox(
+      isCorner: false,
+      step: widget.step,
       child: child,
     );
   }
@@ -71,7 +76,24 @@ class _PropertyBoxState extends ConsumerState<PropertyBox> {
           Container(
             decoration: BoxDecoration(
               color: propertyModel.color,
-              border: border,
+              borderRadius: BorderRadius.only(
+                topLeft: widget.position == BoxPosition.bottom ||
+                        widget.position == BoxPosition.right
+                    ? stepRadiusCircular
+                    : Radius.zero,
+                topRight: widget.position == BoxPosition.bottom ||
+                        widget.position == BoxPosition.left
+                    ? stepRadiusCircular
+                    : Radius.zero,
+                bottomLeft: widget.position == BoxPosition.top ||
+                        widget.position == BoxPosition.right
+                    ? stepRadiusCircular
+                    : Radius.zero,
+                bottomRight: widget.position == BoxPosition.top ||
+                        widget.position == BoxPosition.left
+                    ? stepRadiusCircular
+                    : Radius.zero,
+              ),
             ),
             width: double.maxFinite,
             height: double.maxFinite,
@@ -136,29 +158,54 @@ class _PropertyBoxState extends ConsumerState<PropertyBox> {
       style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
     );
 
-    Widget child = SpacedColumn.small(
+    Widget child = Padding(
       padding: const EdgeInsets.all(4),
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        priceWidget,
-        nameWidget,
-      ],
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          priceWidget,
+          nameWidget,
+        ],
+      ),
     );
 
     child = Container(
       decoration: BoxDecoration(
-        border: border,
-        color: Colors.white,
+        color: stepBackgroundColor(propertyModel.color),
+        borderRadius: BorderRadius.only(
+          topLeft: widget.position == BoxPosition.top ||
+                  widget.position == BoxPosition.left
+              ? stepRadiusCircular
+              : Radius.zero,
+          topRight: widget.position == BoxPosition.top ||
+                  widget.position == BoxPosition.right
+              ? stepRadiusCircular
+              : Radius.zero,
+          bottomLeft: widget.position == BoxPosition.bottom ||
+                  widget.position == BoxPosition.left
+              ? stepRadiusCircular
+              : Radius.zero,
+          bottomRight: widget.position == BoxPosition.bottom ||
+                  widget.position == BoxPosition.right
+              ? stepRadiusCircular
+              : Radius.zero,
+        ),
       ),
+      padding: EdgeInsets.only(
+          bottom: widget.position == BoxPosition.top ||
+                  widget.position == BoxPosition.bottom
+              ? 10
+              : 5),
       child: child,
     );
 
     return Expanded(
       flex: 3,
-      child: TokensBox(
-        step: widget.step,
-        child: child,
-      ),
+      // child: TokensBox(
+      //   step: widget.step,
+      //   child: child,
+      // ),
+      child: child,
     );
   }
 }

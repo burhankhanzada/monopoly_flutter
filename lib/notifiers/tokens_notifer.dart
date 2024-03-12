@@ -56,7 +56,7 @@ class TokensNotifier extends ChangeNotifier {
 
       var endIndex = token.currentStep + 1;
 
-      if (endIndex > maxSteps) {
+      if (endIndex > maxStepsInt) {
         endIndex = 0;
         token.currentStep = 0;
         final remiangSteps = output - stepCounter;

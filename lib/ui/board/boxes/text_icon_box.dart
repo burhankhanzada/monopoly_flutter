@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:monopoly_flutter/constants/enum_constant.dart';
+import 'package:monopoly_flutter/utils/style_util.dart';
 import 'package:monopoly_flutter/models/steps/icon_step_model.dart';
 import 'package:monopoly_flutter/ui/board/boxes/tokens_box.dart';
-import 'package:monopoly_flutter/utils/paint_util.dart';
 import 'package:spaces2/spaces2.dart';
 
 class TextIconBox extends StatelessWidget {
@@ -54,15 +54,15 @@ class TextIconBox extends StatelessWidget {
       width: double.maxFinite,
       height: double.maxFinite,
       decoration: BoxDecoration(
-        border: border,
-        color: Colors.white,
+        borderRadius: stepBorderRadiusCirular,
+        color: stepBackgroundColor(step.color),
       ),
       child: child,
     );
 
     return TokensBox(
+      isCorner: false,
       step: step,
-      position: BoxPosition.bottom,
       child: child,
     );
   }

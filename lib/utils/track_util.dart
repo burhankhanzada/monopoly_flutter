@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:monopoly_flutter/utils/offset_util.dart';
-import 'package:monopoly_flutter/utils/size_offset_util.dart';
+import 'package:monopoly_flutter/utils/size_util.dart';
 
 List<Rect> calculateTracksRects() {
   late Rect previousRect;

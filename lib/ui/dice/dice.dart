@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:monopoly_flutter/utils/paint_util.dart';
-import 'package:monopoly_flutter/utils/size_offset_util.dart';
+import 'package:monopoly_flutter/utils/style_util.dart';
+import 'package:monopoly_flutter/utils/size_util.dart';
 
 class Dice extends StatelessWidget {
   const Dice({super.key, required this.number});

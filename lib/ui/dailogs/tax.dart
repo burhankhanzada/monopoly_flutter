@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:monopoly_flutter/models/steps/tax_step_model.dart';
+import 'package:monopoly_flutter/utils/style_util.dart';
 import 'package:spaces2/spaces2.dart';
 
 class TaxDailog extends StatelessWidget {
@@ -10,14 +11,16 @@ class TaxDailog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(25),
-      padding: const EdgeInsets.all(25),
+      padding: dailogInnerrPadding,
       decoration: BoxDecoration(
-          border: Border.all(
-        color: taxStepModel.color,
-        width: 10,
-      )),
+        borderRadius: dailogBorderRadius2,
+        border: Border.all(
+          width: 10,
+          color: taxStepModel.color,
+        ),
+      ),
       child: SpacedColumn.extraBig(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
             taxStepModel.name,

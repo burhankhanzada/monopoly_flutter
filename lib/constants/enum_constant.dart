@@ -1,1 +1,1 @@
-enum BoxPosition { top, left, right, bottom }
+enum BoxPosition { top, left, right, bottom, corner }

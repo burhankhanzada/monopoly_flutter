@@ -8,7 +8,7 @@ import 'package:monopoly_flutter/ui/dailogs/step_dailog.dart';
 import 'package:monopoly_flutter/ui/dice/roll_dice.dart';
 import 'package:monopoly_flutter/ui/player/player.dart';
 import 'package:monopoly_flutter/ui/token/animated_token.dart';
-import 'package:monopoly_flutter/utils/size_offset_util.dart';
+import 'package:monopoly_flutter/utils/size_util.dart';
 import 'package:spaces2/spaces2.dart';
 
 class Game extends ConsumerStatefulWidget {
@@ -75,7 +75,7 @@ class _GameState extends ConsumerState<Game> {
                   ),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),

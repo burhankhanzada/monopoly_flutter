@@ -1,16 +1,15 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:monopoly_flutter/constants/assets_constant.dart';
 import 'package:monopoly_flutter/constants/string_constant.dart';
+import 'package:monopoly_flutter/utils/style_util.dart';
 import 'package:monopoly_flutter/models/steps/step_model.dart';
 import 'package:monopoly_flutter/models/token_model.dart';
 import 'package:monopoly_flutter/notifiers/game_notifier.dart';
 import 'package:monopoly_flutter/notifiers/tokens_notifer.dart';
 import 'package:monopoly_flutter/ui/token/align_tokens.dart';
 import 'package:monopoly_flutter/ui/token/static_token.dart';
-import 'package:monopoly_flutter/utils/paint_util.dart';
 
 class JailBox extends ConsumerStatefulWidget {
   const JailBox({
@@ -51,8 +50,8 @@ class _JailBoxState extends ConsumerState<JailBox> {
       children: [
         Container(
           decoration: BoxDecoration(
-            border: border,
-            color: Colors.white,
+            color: Colors.grey.shade300,
+            borderRadius: stepBorderRadiusCirular,
           ),
           child: Stack(
             children: [
@@ -73,21 +72,24 @@ class _JailBoxState extends ConsumerState<JailBox> {
   Widget visiting(List<TokenModel> outJailList) {
     return Positioned.fill(
       child: Stack(
+        alignment: Alignment.bottomCenter,
         children: [
-          const Align(
-            alignment: Alignment.bottomCenter,
-            child: Text(
-              justVisiting,
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.black,
-                fontWeight: FontWeight.w900,
-              ),
+          const Text(
+            justVisiting,
+            style: TextStyle(
+              fontSize: 20,
+              color: Colors.black,
+              fontWeight: FontWeight.w900,
             ),
           ),
           AlignTokens(
-            tokenList:
-                outJailList.map((e) => StaticToken(color: e.color)).toList(),
+            isCorner: true,
+            position: widget.step.position,
+            tokenList: outJailList
+                .map(
+                  (e) => StaticToken(color: e.color),
+                )
+                .toList(),
           )
         ],
       ),
@@ -104,7 +106,10 @@ class _JailBoxState extends ConsumerState<JailBox> {
         children: [
           Positioned.fill(
             child: Container(
-              color: Colors.black,
+              decoration: BoxDecoration(
+                color: Colors.black,
+                borderRadius: stepBorderRadiusCirular,
+              ),
               padding: const EdgeInsets.all(0),
               child: Column(
                 children: [
@@ -125,9 +130,14 @@ class _JailBoxState extends ConsumerState<JailBox> {
               ),
             ),
           ),
-          AlignTokens(
-            tokenList:
-                inJailList.map((e) => StaticToken(color: e.color)).toList(),
+          Align(
+            alignment: Alignment.center,
+            child: AlignTokens(
+              isCorner: true,
+              position: widget.step.position,
+              tokenList:
+                  inJailList.map((e) => StaticToken(color: e.color)).toList(),
+            ),
           )
         ],
       ),

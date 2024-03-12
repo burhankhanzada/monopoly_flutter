@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:monopoly_flutter/constants/assets_constant.dart';
 import 'package:monopoly_flutter/constants/string_constant.dart';
 import 'package:monopoly_flutter/models/steps/step_model.dart';
+import 'package:monopoly_flutter/utils/style_util.dart';
 import 'package:spaces2/spaces2.dart';
 
 class GotoJailDailog extends StatelessWidget {
@@ -14,15 +15,16 @@ class GotoJailDailog extends StatelessWidget {
     const color = Colors.blue;
 
     return Container(
-      margin: const EdgeInsets.all(25),
-      padding: const EdgeInsets.all(25),
+      padding: dailogInnerrPadding,
       decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(40),
         border: Border.all(
           color: color,
           width: 10,
         ),
       ),
       child: SpacedColumn.extraBig(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Text(
             gotoJail,
@@ -33,8 +35,14 @@ class GotoJailDailog extends StatelessWidget {
           ),
           Image.asset(
             gotoJailAsset,
-            height: 450,
+            height: 250,
             color: color,
+          ),
+          const Text(
+            'Lorem ipsum',
+            style: TextStyle(
+              fontSize: 40,
+            ),
           ),
         ],
       ),

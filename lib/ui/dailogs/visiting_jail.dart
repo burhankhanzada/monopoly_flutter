@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:monopoly_flutter/constants/assets_constant.dart';
 import 'package:monopoly_flutter/models/steps/step_model.dart';
+import 'package:monopoly_flutter/utils/style_util.dart';
 import 'package:spaces2/spaces2.dart';
 
 class VisitngJailDailog extends StatelessWidget {
@@ -13,9 +14,8 @@ class VisitngJailDailog extends StatelessWidget {
     const color = Colors.black;
 
     return Container(
-      margin: const EdgeInsets.all(25),
-      padding: const EdgeInsets.all(25),
       decoration: BoxDecoration(
+        borderRadius: dailogBorderRadius2,
         border: Border.all(
           color: color,
           width: 10,

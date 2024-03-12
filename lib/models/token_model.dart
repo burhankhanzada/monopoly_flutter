@@ -3,8 +3,8 @@ import 'package:flutter/widgets.dart';
 class TokenModel {
   final Color color;
   int currentStep = 0;
-  bool isAnimating = false;
   bool isInJail = false;
+  bool isAnimating = false;
   late Animation<Rect?> animation;
   late AnimationController controller;
 

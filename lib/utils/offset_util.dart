@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:monopoly_flutter/utils/size_offset_util.dart';
+import 'package:monopoly_flutter/utils/size_util.dart';
 
 Offset boardCenterOffset = Offset(boardHalf, boardHalf);
 

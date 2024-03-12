@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:monopoly_flutter/constants/assets_constant.dart';
 import 'package:monopoly_flutter/constants/string_constant.dart';
+import 'package:monopoly_flutter/utils/style_util.dart';
 import 'package:monopoly_flutter/models/steps/step_model.dart';
 import 'package:monopoly_flutter/ui/board/boxes/tokens_box.dart';
-import 'package:monopoly_flutter/utils/paint_util.dart';
 import 'package:spaces2/spaces2.dart';
 
 class FreeParkBox extends StatelessWidget {
@@ -18,10 +18,11 @@ class FreeParkBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return TokensBox(
       step: step,
+      isCorner: true,
       child: Container(
         decoration: BoxDecoration(
-          border: border,
           color: Colors.green,
+          borderRadius: stepBorderRadiusCirular,
         ),
         child: Center(
           child: SpacedColumn(

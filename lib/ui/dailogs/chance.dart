@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:monopoly_flutter/constants/string_constant.dart';
 import 'package:monopoly_flutter/models/steps/step_model.dart';
+import 'package:monopoly_flutter/utils/style_util.dart';
 import 'package:spaces2/spaces2.dart';
 
 class ChanceDailog extends StatelessWidget {
@@ -11,13 +12,13 @@ class ChanceDailog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(25),
-      padding: const EdgeInsets.all(25),
       decoration: BoxDecoration(
-          border: Border.all(
-        color: Colors.purple,
-        width: 10,
-      )),
+        borderRadius: dailogBorderRadius2,
+        border: Border.all(
+          width: 10,
+          color: Colors.purple,
+        ),
+      ),
       child: const SpacedColumn.extraBig(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:monopoly_flutter/constants/list_constant.dart';
 import 'package:monopoly_flutter/models/player_model.dart';
+import 'package:monopoly_flutter/models/steps/buyable_mixin.dart';
 import 'package:monopoly_flutter/models/steps/property_step_model.dart';
+import 'package:monopoly_flutter/models/steps/rail_step_model.dart';
 import 'package:monopoly_flutter/models/steps/step_model.dart';
+import 'package:monopoly_flutter/models/steps/utility_step_model.dart';
 import 'package:monopoly_flutter/models/token_model.dart';
 import 'package:monopoly_flutter/notifiers/tokens_notifer.dart';
 import 'package:monopoly_flutter/ui/dice/dice_notifier.dart';
@@ -55,12 +58,25 @@ class GameNotifier extends ChangeNotifier {
     showDialog();
   }
 
-  void buy(PropertyStepModel buyableStepModel) {
-    (stepList[buyableStepModel.index] as PropertyStepModel).ownedBy =
-        currentPLayer;
-    currentPLayer.properties.add(buyableStepModel.property);
-    players[currentPlayerIndex].money =
-        players[currentPlayerIndex].money - buyableStepModel.property.price;
+  void buy(StepModel step) {
+    if (step is BuyableStep) {
+      (stepList[step.index] as BuyableStep).ownedBy = currentPLayer;
+
+      if (step is PropertyStepModel) {
+        currentPLayer.properties.add(step.property);
+        players[currentPlayerIndex].money =
+            players[currentPlayerIndex].money - step.property.price;
+      } else if (step is RailStepModel) {
+        currentPLayer.railrolads.add(step);
+        players[currentPlayerIndex].money =
+            players[currentPlayerIndex].money - step.price;
+      } else if (step is UtilityStepModel) {
+        currentPLayer.utlities.add(step);
+        players[currentPlayerIndex].money =
+            players[currentPlayerIndex].money - step.price;
+      }
+    }
+
     showBroughtDialog = true;
     notifyListeners();
   }

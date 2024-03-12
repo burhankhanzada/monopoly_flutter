@@ -11,12 +11,27 @@ class StaticToken extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SvgPicture(
-      height: 50,
-      SvgAssetLoader(
-        'assets/icons/peice.svg',
-        colorMapper: MyColorMapper(color: color),
-      ),
+    // return SvgPicture(
+    //   height: 50,
+    //   SvgAssetLoader(
+    //     'assets/icons/peice.svg',
+    //     colorMapper: MyColorMapper(color: color),
+    //   ),
+    // );
+    return Stack(
+      clipBehavior: Clip.antiAlias,
+      alignment: Alignment.center,
+      children: [
+        const Padding(
+          padding: EdgeInsets.only(top: 5),
+          child: CircleAvatar(
+            radius: 20,
+            backgroundColor: Colors.black,
+          ),
+        ),
+        const CircleAvatar(backgroundColor: Colors.white, radius: 20),
+        CircleAvatar(backgroundColor: color, radius: 15),
+      ],
     );
   }
 }

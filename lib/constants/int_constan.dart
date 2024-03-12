@@ -1,1 +1,1 @@
-int maxSteps =  39;
+int maxStepsInt =  39;
